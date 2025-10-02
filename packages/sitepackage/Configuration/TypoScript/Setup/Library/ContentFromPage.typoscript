@@ -1,0 +1,7 @@
+lib.contentFromPage = CONTENT
+lib.contentFromPage {
+  table = tt_content
+  select {
+    pidInList.field = page
+  }
+}

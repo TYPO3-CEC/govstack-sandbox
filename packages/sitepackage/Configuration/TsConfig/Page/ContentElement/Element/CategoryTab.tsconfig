@@ -1,0 +1,13 @@
+mod.wizards.newContentElement.wizardItems.media {
+    elements {
+        tab {
+            iconIdentifier = content-bootstrappackage-tab
+            title = LLL:EXT:sitepackage/Resources/Private/Language/backend.xlf:content_element.category_tab
+            description = LLL:EXT:sitepackage/Resources/Private/Language/backend.xlf:content_element.category_tab.description
+            tt_content_defValues {
+                CType = category_tab
+            }
+        }
+    }
+    show := addToList(category_tab)
+}

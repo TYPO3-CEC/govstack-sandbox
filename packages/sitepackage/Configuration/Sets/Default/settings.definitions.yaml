@@ -1,0 +1,18 @@
+categories:
+  BootstrapPackage.search:
+    label: 'Search'
+    parent: BootstrapPackage
+  BootstrapPackage.footer:
+    label: 'Footer'
+    parent: BootstrapPackage
+settings:
+  page.theme.search.targetPid:
+    label: 'Search page'
+    category: BootstrapPackage.search
+    type: int
+    default: 16
+  page.theme.footer.contactPid:
+    label: 'Footer: The id of page containing the contact data'
+    category: BootstrapPackage.footer
+    type: int
+    default: 14

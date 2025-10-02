@@ -1,0 +1,11 @@
+.breadcrumb {
+    .breadcrumb-item {
+        .breadcrumb-text {
+            font-size: 14px;
+            font-weight: 700;
+        }
+        &.active {
+            color: $tertiary
+        }
+    }
+}

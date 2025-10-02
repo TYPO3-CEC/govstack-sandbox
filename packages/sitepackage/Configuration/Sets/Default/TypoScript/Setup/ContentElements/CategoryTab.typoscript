@@ -1,0 +1,42 @@
+tt_content.category_tab >
+# CTYPE: Tab of categories
+tt_content.category_tab =< lib.contentElement
+tt_content.category_tab {
+  templateName = CategoryTabs
+  dataProcessing {
+    10 = database-query
+    10 {
+      table = sys_category
+      pidInList.field = pages
+      orderBy = sorting
+      max = 20
+      where.field = selected_categories
+      where.wrap = {#parent} in (|)
+      as = categories
+    }
+    20 = database-query
+    20 {
+      table = pages
+      pidInList.field = pages
+      recursive = 4
+      where = doktype in (200, 210)
+      orderBy = sorting
+      as = services
+      dataProcessing {
+        10 = record-transformation
+        20 =  BK2K\BootstrapPackage\DataProcessing\IconsDataProcessor
+        20 {
+          iconSet.field = nav_icon_set
+          iconIdentifier.field = nav_icon_identifier
+          iconFileFieldName = nav_icon
+          as = icon
+          if {
+             isTrue = {$plugin.bootstrap_package_contentelements.menu_card.icon.enable}
+          }
+        }
+      }
+    }
+  }
+  variables.activeTab = TEXT
+  variable.activeTab.data = GP:tx_sitepackage|category
+}

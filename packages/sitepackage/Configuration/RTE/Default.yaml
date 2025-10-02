@@ -1,0 +1,91 @@
+imports:
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Processing.yaml" }
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Base.yaml" }
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Plugins.yaml" }
+
+editor:
+    externalPlugins:
+        bootstrappackage_box:
+            resource: "EXT:bootstrap_package/Resources/Public/CKEditor/Plugins/Box/plugin.min.js"
+        bootstrappackage_columns:
+            resource: "EXT:bootstrap_package/Resources/Public/CKEditor/Plugins/Columns/plugin.min.js"
+        bootstrappackage_indent:
+            resource: "EXT:bootstrap_package/Resources/Public/CKEditor/Plugins/Indent/plugin.min.js"
+        bootstrappackage_table:
+            resource: "EXT:bootstrap_package/Resources/Public/CKEditor/Plugins/Table/plugin.min.js"
+    config:
+        contentsCss: "EXT:sitepackage/Resources/Public/Default/Css/RTE/rte.css"
+
+        stylesSet:
+            - { name: "Large font", element: "p", attributes: { 'class': 'p--size-two' } }
+            - { name: "Extra-large font", element: "p", attributes: { 'class': 'p--size-three' } }
+
+            - { name: "Primary Button", element: "a", attributes: { 'class': 'btn btn-primary' } }
+            - { name: "Primary Outline Button", element: "a", attributes: { 'class': 'btn btn-outline-primary' } }
+            - { name: "Secondary Button", element: "a", attributes: { 'class': 'btn btn-secondary' } }
+            - { name: "Secondary Outline Button", element: "a", attributes: { 'class': 'btn btn-outline-secondary' } }
+            - { name: "Tertiary Button", element: "a", attributes: { 'class': 'btn btn-tertiary' } }
+            - { name: "Tertiary Outline Button", element: "a", attributes: { 'class': 'btn btn-outline-tertiary' } }
+
+        toolbar:
+            items:
+                - heading
+                - style
+                - '|'
+                - blockQuote
+                - '|'
+                - bold
+                - italic
+                - softhyphen
+                - '|'
+                - bulletedList
+                - numberedList
+                - '|'
+                - indent
+                - outdent
+                - '|'
+                - alignment
+                - '|'
+                - link
+                - '-'
+                - insertTable
+                - tableColumn
+                - tableRow
+                - mergeTableCells
+                - TableProperties
+                - TableCellProperties
+                - '|'
+                - undo
+                - redo
+                - '|'
+                - horizontalLine
+                - specialCharacters
+                - '-'
+                - removeFormat
+                - showBlocks
+                - sourceEditing
+
+        format_tags: "p;h1;h2;h3;h4;h5;pre"
+
+        allowedContent: true
+
+        extraAllowedContent: "*(*);*{*}"
+
+        justifyClasses:
+            - text-left
+            - text-center
+            - text-right
+            - text-justify
+
+        extraPlugins:
+          - justify
+          - autolink
+          - bootstrappackage_box
+          - bootstrappackage_columns
+          - bootstrappackage_indent
+          - bootstrappackage_table
+
+        removePlugins:
+            - image
+        importModules:
+            - { module: '@ckeditor/ckeditor5-show-blocks', exports: ['ShowBlocks'] }

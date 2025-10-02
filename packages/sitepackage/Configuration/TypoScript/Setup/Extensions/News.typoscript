@@ -1,0 +1,23 @@
+plugin.tx_news {
+	mvc.callDefaultActionIfActionCantBeResolved = 1
+
+	view {
+		templateRootPaths {
+			1 = EXT:sitepackage/Resources/Private/Templates/Extensions/News/
+		}
+
+		partialRootPaths {
+			0 = EXT:news/Resources/Private/Partials/
+			1 = EXT:sitepackage/Resources/Private/Partials/Extensions/News/
+		}
+
+		layoutRootPaths {
+			0 = EXT:news/Resources/Private/Layouts/
+			1 = EXT:sitepackage/Resources/Private/Layouts/Extensions/News/
+		}
+	}
+	settings {
+	  cssFile =
+    displayDummyIfNoMedia = 0
+  }
+}

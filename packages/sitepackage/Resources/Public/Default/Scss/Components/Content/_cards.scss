@@ -1,0 +1,28 @@
+.card-menu, .card-group {
+    .card {
+        text-align: center;
+
+        .card-title {
+            color: $tertiary;
+        }
+
+        .card-category {
+            font-size: 1rem;
+        }
+
+        .card-icon {
+            color: $secondary;
+        }
+
+        .btn {
+            font-size: 14px;
+        }
+    }
+}
+
+.element-more-link {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}

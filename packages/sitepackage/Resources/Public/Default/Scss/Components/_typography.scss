@@ -1,0 +1,151 @@
+
+h1, h2, h3, h4, h5, h6 {
+    &.font--semi-bold {
+        font-weight: 600;
+    }
+
+    &.font--bold {
+        font-weight: 700;
+    }
+
+    &.font--extra-bold {
+        font-weight: 800;
+    }
+}
+
+.font--display {
+    &-one {
+        font-size: clamp(2.5rem, 4vw, 4.5rem); // 72px = 4.5rem
+        line-height: clamp(2.5rem, 5vw, 5rem); // 80px = 5rem
+        letter-spacing: -4%;
+        font-weight: 800;
+    }
+
+    &-two {
+        font-size: clamp(1.75rem, 3vw, 3.75rem); // 60px = 3.75rem
+        line-height: clamp(1.5rem, 4vw, 4.5rem); // 72px = 4.5rem
+        letter-spacing: -4%;
+        font-weight: 800;
+    }
+}
+
+h1 {
+    color: $primary;
+    font-size: clamp(2rem, 4vw, 3rem); // 48px = 3rem
+    margin-bottom: clamp(1rem, 3vw, 2rem);
+    letter-spacing: -4%;
+    font-weight: 800;
+
+    &.small {
+        font-size: clamp(2.125rem, 4vw, 2.125rem); // 34px = 2.125rem
+        line-height: clamp(2.5rem, 5vw, 2.5rem); // 40px = 2.5rem
+    }
+}
+
+h2 {
+    color: $primary;
+    font-size: clamp(1.8rem, 3.5vw, 2.438rem); // 33px = 2.0625rem
+    margin-bottom: clamp(0.9rem, 2.8vw, 1.5rem);
+    letter-spacing: -4%;
+    font-weight: 800;
+
+    &.small {
+        font-size: clamp(2.06rem, 4vw, 2.0625rem); // 33px = 2.0625rem
+        line-height: clamp(2.5rem, 5vw, 2.5rem); // 40px = 2.5rem
+    }
+}
+
+h3 {
+    font-size: clamp(1.6rem, 4vw, 2.0625rem); // 33px = 2.0625rem
+    margin-bottom: clamp(0.8rem, 2.5vw, 1.5rem);
+    letter-spacing: -2%;
+    font-weight: 800;
+    color: $primary;
+
+    &.small {
+        font-size: clamp(1.75rem, 3.5vw, 1.75rem); // 28px = 1.75rem
+        line-height: clamp(2.1rem, 4vw, 2.125rem); // 34px = 2.125rem
+    }
+}
+
+h4 {
+    font-size: clamp(1.4rem, 3.5vw, 1.75rem); // 28px = 1.75rem
+    margin-bottom: clamp(0.7rem, 2.2vw, 1.5rem);
+    letter-spacing: -2%;
+    font-weight: 800;
+    color: $primary;
+
+    &.small {
+        font-size: clamp(1.44rem, 3vw, 1.4375rem); // 23px = 1.4375rem
+        line-height: clamp(1.75rem, 3.5vw, 1.75rem); // 28px = 1.75rem
+    }
+}
+
+h5 {
+    font-size: clamp(1.2rem, 3vw, 1.4375rem); // 23px = 1.4375rem
+    margin-bottom: clamp(0.6rem, 2vw, 1rem);
+    letter-spacing: 2%;
+    font-weight: 800;
+    color: $primary;
+
+    &.small {
+        font-size: clamp(1.19rem, 2.5vw, 1.1875rem); // 19px = 1.1875rem
+        line-height: clamp(1.44rem, 3vw, 1.4375rem); // 23px = 1.4375rem
+    }
+}
+
+h6 {
+    font-size: clamp(1.2rem, 2.5vw, 1.1875rem); // 19px = 1.1875rem
+    line-height: clamp(1.4rem, 3vw, 1.4375rem); // 23px = 1.4375rem
+    margin-bottom: clamp(0.5rem, 1.8vw, 0.9rem);
+    letter-spacing: -2%;
+    font-weight: 800;
+
+    &.small {
+        font-size: clamp(0.88rem, 2vw, 0.875rem); // 14px = 0.875rem
+        line-height: clamp(1.25rem, 2.5vw, 1.25rem); // 20px = 1.25rem
+    }
+}
+
+p {
+    font-size: 0.875rem; // 14px = 0.875rem
+    line-height: 1.5rem; // 24px = 1.5rem
+    letter-spacing: 0;
+    font-weight: normal;
+
+    &.p--size-two {
+        font-size: 1rem; // 16px = 1rem
+        line-height: 1.5rem; // 24px = 1.5rem
+        letter-spacing: 0;
+    }
+
+    &.p--size-three {
+        font-size: 1.125rem; // 18px = 1.125rem
+        line-height: 1.5rem; // 24px = 1.5rem
+        letter-spacing: 0;
+    }
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text-center {
+    text-align: center;
+}
+
+p + h1, p + h2, p + h3, p + h4, p + h5 {
+    margin-top: 3rem;
+}
+
+ul + h1, ul + h2, ul + h3, ul + h4, ul + h5 {
+    margin-top: 3rem;
+}
+
+ol + h1, ol + h2, ol + h3, ol + h4, ol + h5 {
+    margin-top: 3rem;
+}
+
+.text-right {
+    text-align: right;
+}

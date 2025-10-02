@@ -1,0 +1,21 @@
+name: govstack-typo3
+type: typo3
+docroot: public
+php_version: "8.3"
+webserver_type: apache-fpm
+xdebug_enabled: false
+additional_hostnames:
+    - institution
+additional_fqdns: []
+database:
+    type: mysql
+    version: "8.0"
+hooks:
+    post-start:
+        - exec: composer install --no-progress
+use_dns_when_possible: true
+composer_version: "2"
+web_environment:
+    - HOST_PORTAL=https://govstack-typo3.ddev.site/
+    - HOST_INSTITUTION=https://institution.ddev.site/
+corepack_enable: false

@@ -1,0 +1,5 @@
+@import 'EXT:sitepackage/Configuration/TsConfig/Page/ContentElement/All.tsconfig'
+@import 'EXT:sitepackage/Configuration/TsConfig/Extensions/*.tsconfig'
+@import './TsConfig/Page/Mod/WebLayout/BackendLayouts.tsconfig'
+@import './TsConfig/Page/'
+

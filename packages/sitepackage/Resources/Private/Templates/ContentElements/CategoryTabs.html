@@ -1,0 +1,100 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+<f:section name="Main">
+    <f:if condition="{categories}">
+        <div class="tab-navigation">
+            <div class="nav nav-tabs" id="tab-{data.uid}">
+                <button
+                        class="nav-link{f:if(condition: '{activeTab}',else: ' active')}"
+                        data-category="{category.data.uid}"
+                        type="button"
+                >
+                    <span><f:translate key="LLL:EXT:sitepackage/Resources/Private/Language/locallang.xlf:content_element.category_tab.all"/></span>
+                </button>
+                <f:for each="{categories}" as="category" iteration="iteration">
+                    <button
+                        class="nav-link{f:if(condition: '{activeTab} == {category.data.uid}',then: ' active')}"
+                        data-category="{category.data.uid}"
+                        >
+                        <span>{category.data.title}</span>
+                    </button>
+                </f:for>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane fade show active">
+                <f:if condition="services">
+                    <div class="frame frame-default frame-type-card_group frame-layout-service-card frame-size-default frame-height-default frame-background-none frame-space-before-none frame-space-after-none frame-no-backgroundimage paginated-data">
+                        <div class="frame-group-container">
+                            <div class="frame-group-inner">
+                                <div class="frame-container frame-container-default">
+                                    <div class="frame-inner">
+                                        <div class="card-menu card-menu-align-left card-menu-columns-3">
+                                            <f:for each="{services}" as="service">
+                                                <f:variable name="serviceCategoryIds" value=""/>
+                                                <f:for each="{service.record.categories}" as="serviceCategory" iteration="iteration">
+                                                    <f:if condition="{iteration.isFirst}">
+                                                        <f:then>
+                                                            <f:variable name="serviceCategoryIds" value="{serviceCategory.uid}"/>
+                                                        </f:then>
+                                                        <f:else>
+                                                            <f:variable name="serviceCategoryIds" value="{serviceCategoryIds},{serviceCategory.uid}"/>
+                                                        </f:else>
+                                                    </f:if>
+                                                </f:for>
+                                                <div class="card-menu-item" data-categories="[{serviceCategoryIds}]">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <f:if condition="{service.icon}">
+                                                                <div class="card-icon">
+                                                                    <picture>
+                                                                        <bk2k:icon icon="{service.icon}" width="40" height="40" />
+                                                                    </picture>
+                                                                </div>
+                                                            </f:if>
+                                                            <div class="card-heading">
+                                                                <h2 class="card-title">
+                                                                    {service.record.title}
+                                                                </h2>
+                                                                <f:if condition="{service.record.categories}">
+                                                                    <h3 class="card-category">
+                                                                        {service.record.categories.0.title}
+                                                                    </h3>
+                                                                </f:if>
+                                                            </div>
+                                                            <p>
+                                                                {service.record.abstract}
+                                                            </p>
+                                                        </div>
+                                                        <div class="card-footer">
+                                                            <f:if condition="{service.data.doktype} == 210">
+                                                                <f:then>
+                                                                    <f:link.typolink parameter="{service.data.url}" target="_blank" class="btn btn-secondary" title="{linkTitle -> f:format.trim()}">
+                                                                        <f:translate key="readmore" extensionName="bootstrap_package" />
+                                                                    </f:link.typolink>
+                                                                </f:then>
+                                                                <f:else>
+                                                                    <f:link.page pageUid="{service.record.uid}" class="btn btn-secondary" title="{linkTitle -> f:format.trim()}">
+                                                                        <f:translate key="readmore" extensionName="bootstrap_package" />
+                                                                    </f:link.page>
+                                                                </f:else>
+                                                            </f:if>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </f:for>
+                                        </div>
+                                        <div class="pagination-container"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </f:if>
+            </div>
+        </div>
+    </f:if>
+
+</f:section>
+
+</html>

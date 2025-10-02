@@ -1,0 +1,29 @@
+TCEFORM {
+  tt_content {
+    space_before_class {
+      addItems {
+        no-space = None
+      }
+    }
+    space_after_class {
+      addItems {
+        no-space = None
+      }
+    }
+    imageorient.types {
+      gallery.disabled = 1
+    }
+    aspect_ratio {
+        addItems {
+            0 = No processing
+        }
+    }
+    frame_options {
+      #removeItems = ruler-before
+    }
+    date.disabled = 1
+    layout.disabled = 1
+    categories.disabled = 1
+    fe_group.disabled = 1
+  }
+}

@@ -1,0 +1,159 @@
+h1 {
+    font-size: 36px;
+    margin-bottom: 25px;
+    letter-spacing: -4%;
+    font-weight: 600;
+
+    &.small {
+        font-size: 25px;
+    }
+}
+
+h2 {
+    font-size: 25px;
+    margin-bottom: 18px;
+    letter-spacing: -4%;
+    font-weight: 600;
+
+    &.small {
+        font-size: 21px;
+        line-height: 15px
+    }
+}
+
+h3 {
+    font-size: 25px;
+    margin-bottom: 18px;
+    letter-spacing: -2%;
+    font-weight: 600;
+
+    &.small {
+        font-size: 21px;
+        margin-bottom: 15px;
+    }
+}
+
+h4 {
+    font-size: 21px;
+    margin-bottom: 15px;
+    letter-spacing: -2%;
+    font-weight: 600;
+
+    &.small {
+        font-size: 17px;
+        margin-bottom: 12px;
+    }
+}
+
+h5 {
+    font-size: 17px;
+    margin-bottom: 12px;
+    letter-spacing: 2%;
+    font-weight: 600;
+
+    &.small {
+        font-size: 19px;
+    }
+}
+
+h6 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    letter-spacing: -2%;
+    font-weight: 600;
+
+    &.small {
+        font-size: 12px;
+        line-height: 7px;
+    }
+}
+
+p {
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0;
+    font-weight: normal;
+
+    &.p--size-two {
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: 0;
+    }
+
+    &.p--size-three {
+        font-size: 16px;
+        line-height: 18px;
+        letter-spacing: 0;
+    }
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+p + h1, p + h2, p + h3, p + h4, p + h5 {
+    margin-top: 3rem;
+}
+
+ul + h1, ul + h2, ul + h3, ul + h4, ul + h5 {
+    margin-top: 3rem;
+}
+
+ol + h1, ol + h2, ol + h3, ol + h4, ol + h5 {
+    margin-top: 3rem;
+}
+
+.btn {
+    padding: 12px 24px;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 14px;
+    margin-bottom: 18px;
+    background: none;
+    box-shadow: none;
+
+}
+.btn-primary {
+    color: #ffffff;
+    background-color: #003F82;
+    border: 2px solid #003F82;
+}
+
+.btn-outline-primary {
+    color: #003F82;
+    background-color: #ffffff;
+    border: 2px solid #003F82;
+}
+
+.btn-secondary {
+    color: #ffffff;
+    background-color: #d9e2ec;
+    border: 2px solid #d9e2ec;
+}
+
+.btn-outline-secondary {
+    color: #d9e2ec;
+    background-color: #ffffff;
+    border: 2px solid #d9e2ec;
+}
+
+.btn-tertiary {
+    color: #ffffff;
+    background-color: #d9e2ec;
+    border: 2px solid #d9e2ec;
+}
+
+.btn-outline-tertiary {
+    color: #d9e2ec;
+    background-color: #ffffff;
+    border: 2px solid #d9e2ec;
+}
+

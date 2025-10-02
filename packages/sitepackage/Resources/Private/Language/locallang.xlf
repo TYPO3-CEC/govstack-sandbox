@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" product-name="sitepackage">
+        <header/>
+        <body>
+			<trans-unit id="site.title">
+				<source>TYPO3 GovStack Sandbox: Main portal</source>
+			</trans-unit>
+			<trans-unit id="content_element.category_tab.all">
+				<source>All</source>
+			</trans-unit>
+        </body>
+    </file>
+</xliff>

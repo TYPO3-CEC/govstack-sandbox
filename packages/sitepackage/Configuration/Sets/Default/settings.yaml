@@ -1,0 +1,87 @@
+page:
+  logo:
+    file: 'EXT:sitepackage/Resources/Public/Default/Images/Logo/logo.svg'
+    height: 49
+    linktitle: 'LLL:EXT:sitepackage/Resources/Private/Language/locallang.xlf:site.title'
+    alt: 'LLL:EXT:sitepackage/Resources/Private/Language/locallang.xlf:site.title'
+  favicon:
+    file: EXT:sitepackage/Resources/Public/Icons/favicon.ico
+  language:
+    enable: 1
+  theme:
+    googleFont:
+      enable: 1
+      font: 'Inter'
+      weight: '300,400,500,700, 800'
+    navigation:
+      type: top
+      icon:
+        enable: 0
+      dropdown:
+        icon:
+          enable: 0
+    breadcrumb:
+      enable: 1
+      enableLevel: 1
+      icon:
+        enable: 0
+    footernavigation:
+      enable: 1
+      navigationValue: 4,6,7,29
+    meta:
+      enable: 1
+      navigationType: directory
+      navigationValue: 46
+    contact:
+      enable: 1
+      data:
+        title: 'LLL:EXT:sitepackage/Resources/Private/Language/locallang.xlf:contact.title'
+        addressLine1: 'LLL:EXT:sitepackage/Resources/Private/Language/locallang.xlf:contact.address'
+      button:
+        colorClass: 'outline-primary'
+    copyright:
+      enable: 1
+      text: 'LLL:EXT:sitepackage/Resources/Private/Language/locallang.xlf:copyright.text'
+    cookieconsent:
+      enable: true
+      content:
+        href: 52
+    socialmedia:
+      enable: 1
+      channels:
+        x:
+          label: ''
+          url: 'https://twitter.com/'
+        instagram:
+          label: ''
+          url: 'https://www.instagram.com/'
+        linkedin:
+          label: ''
+          url: 'https://www.linkedin.com/'
+        facebook:
+          label: ''
+          url: 'https://www.facebook.com/'
+  fluidtemplate:
+    layoutRootPath: EXT:sitepackage/Resources/Private/Layouts/Page/
+    templateRootPath: EXT:sitepackage/Resources/Private/Templates/Page/
+    partialRootPath: EXT:sitepackage/Resources/Private/Partials/Page/
+plugin:
+  bootstrap_package:
+    view:
+      layoutRootPath: EXT:sitepackage/Resources/Private/Layouts/
+      templateRootPath: EXT:sitepackage/Resources/Private/Templates/
+      partialRootPath: EXT:sitepackage/Resources/Private/Partials/
+    settings:
+      scss:
+        primary: '#0a0050'
+        secondary: '#2bc582'
+        tertiary: '#0539e3'
+        quaternary: '#ff4042'
+  bootstrap_package_contentelements:
+    view:
+      layoutRootPath: EXT:sitepackage/Resources/Private/Layouts/ContentElements/
+      templateRootPath: EXT:sitepackage/Resources/Private/Templates/ContentElements/
+      partialRootPath: EXT:sitepackage/Resources/Private/Partials/ContentElements/
+indexedsearch:
+  rootPidList: 1
+  targetPid: 16
