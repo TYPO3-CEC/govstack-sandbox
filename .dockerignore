@@ -1,0 +1,10 @@
+.git
+.github
+.gitlab
+node_modules
+vendor
+public/fileadmin
+public/typo3temp
+var
+.env
+*.log
