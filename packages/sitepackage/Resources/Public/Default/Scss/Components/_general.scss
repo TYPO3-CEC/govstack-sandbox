@@ -47,8 +47,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.frame {
-    .frame-header {
-        margin-bottom: 2rem;
-    }
+.btn.btn-default {
+    background-color: $secondary;
+    color: $primary;
 }

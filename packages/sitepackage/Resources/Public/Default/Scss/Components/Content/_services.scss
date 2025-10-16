@@ -1,0 +1,49 @@
+.frame-layout-service-card {
+    .card-menu, .card-group {
+        .card {
+            text-align: center;
+
+            .card-title {
+                color: $tertiary;
+            }
+
+            .card-category {
+                font-size: 1rem;
+            }
+
+            .card-icon {
+                color: $secondary;
+            }
+
+            .btn {
+                font-size: 0.875rem;
+            }
+        }
+    }
+
+    .pagination-container {
+        margin-top: 2rem;
+
+        .current {
+            background: $light;
+            border-color: $lighter;
+            color: #000000;
+        }
+
+        .page-link {
+            background: $secondary;
+            color: #000;
+            border-color: $lighter;
+        }
+    }
+}
+
+.element-more-link {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    a {
+        margin-bottom:2rem;
+    }
+}

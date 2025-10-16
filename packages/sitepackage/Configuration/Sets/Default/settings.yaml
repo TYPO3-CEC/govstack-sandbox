@@ -26,26 +26,18 @@ page:
       icon:
         enable: 0
     footernavigation:
-      enable: 1
-      navigationValue: 4,6,7,29
+      enable: 0
     meta:
-      enable: 1
-      navigationType: directory
-      navigationValue: 46
+      enable: 0
     contact:
-      enable: 1
-      data:
-        title: 'LLL:EXT:sitepackage/Resources/Private/Language/locallang.xlf:contact.title'
-        addressLine1: 'LLL:EXT:sitepackage/Resources/Private/Language/locallang.xlf:contact.address'
-      button:
-        colorClass: 'outline-primary'
+      enable: 0
     copyright:
       enable: 1
       text: 'LLL:EXT:sitepackage/Resources/Private/Language/locallang.xlf:copyright.text'
     cookieconsent:
       enable: true
       content:
-        href: 52
+        href: 31
     socialmedia:
       enable: 1
       channels:
@@ -77,6 +69,11 @@ plugin:
         secondary: '#2bc582'
         tertiary: '#0539e3'
         quaternary: '#ff4042'
+        lighter: '#e9e9e9'
+        light: '#E1E1E1'
+        dark: '#c0c0c0'
+        default: '#2bc582'
+        link-color: $tertiary
   bootstrap_package_contentelements:
     view:
       layoutRootPath: EXT:sitepackage/Resources/Private/Layouts/ContentElements/

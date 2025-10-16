@@ -1,0 +1,33 @@
+.frame-type-textteaser {
+    .textteaser-teaser {
+        order: 2;
+        text-align: center;
+
+        .element-header {
+            position: relative;
+
+            a {
+                text-decoration: none;
+
+                &:after {
+                    position: absolute;
+                    top: 0;
+                    right: 10px;
+                    -webkit-transform: scale(0.5, 1); /* Safari and Chrome */
+                    -moz-transform: scale(0.5, 1); /* Firefox */
+                    -ms-transform: scale(0.5, 1); /* IE 9 */
+                    -o-transform: scale(0.5, 1); /* Opera */
+                    transform: scale(0.5, 1); /* W3C */
+                    content: ">";
+                }
+
+                &:hover {
+                    &:after {
+                        right: 6px;
+                    }
+                }
+            }
+        }
+    }
+
+}

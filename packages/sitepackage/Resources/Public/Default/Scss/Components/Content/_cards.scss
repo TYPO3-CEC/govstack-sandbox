@@ -1,28 +1,32 @@
-.card-menu, .card-group {
+.frame-type-card_group, .frame-type-card_menu, .frame-type-menu_card_list {
     .card {
         text-align: center;
 
-        .card-title {
-            color: $tertiary;
-        }
-
-        .card-category {
+        .card-subtitle {
             font-size: 1rem;
         }
 
         .card-icon {
             color: $secondary;
         }
+        .card-body  {
+            p {
+                text-align:justify;
+            }
+            ul, ol {
+                text-align:left;
+            }
+            .card-title{
+                text-align:left;
+            }
+            .card-icon + .card-heading .card-title {
+                text-align:center;
+            }
 
-        .btn {
-            font-size: 14px;
+        }
+        .card-img-top + .card-body .card-title {
+            text-align:center;
         }
     }
 }
 
-.element-more-link {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin: 2rem 0;
-}

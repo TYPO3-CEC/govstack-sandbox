@@ -9,6 +9,9 @@
 			<trans-unit id="content_element.category_tab.all">
 				<source>All</source>
 			</trans-unit>
+			<trans-unit id="copyright.text">
+				<source>All rights reserved</source>
+			</trans-unit>
         </body>
     </file>
 </xliff>

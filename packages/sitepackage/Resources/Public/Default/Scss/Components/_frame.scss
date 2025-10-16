@@ -1,0 +1,15 @@
+.frame {
+    &.frame-space-before-no-space {
+        margin-top: 0;
+        padding-top: 0
+    }
+
+    &.frame-space-after-no-space {
+        margin-bottom: 0;
+        padding-bottom: 0
+    }
+
+    .frame-header {
+        margin-bottom: 2rem;
+    }
+}

@@ -113,6 +113,12 @@ p {
     letter-spacing: 0;
     font-weight: normal;
 
+    &.p--size-small {
+        font-size: 0.75rem; // 16px = 1rem
+        line-height: 1.5rem; // 24px = 1.5rem
+        letter-spacing: 0;
+    }
+
     &.p--size-two {
         font-size: 1rem; // 16px = 1rem
         line-height: 1.5rem; // 24px = 1.5rem
@@ -132,6 +138,13 @@ p {
 
 .text-center {
     text-align: center;
+}
+
+ul li, ol li {
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    letter-spacing: 0;
+    font-weight: normal;
 }
 
 p + h1, p + h2, p + h3, p + h4, p + h5 {
