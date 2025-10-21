@@ -49,16 +49,17 @@
                                         <f:variable name="pageTarget" value="{page.target}" />
                                     </f:else>
                                 </f:if>
-                            <a href="{pageLink}"{f:if(condition: pageTarget, then: ' target="{pageTarget}"')} class="btn btn-secondary" title="{page.title}" data-toggle="tooltip">
-                                <f:if condition="{data.readmore_label}">
-                                    <f:then>
-                                        {data.readmore_label}
-                                    </f:then>
-                                    <f:else>
-                                        <f:translate key="readmore" extensionName="bootstrap_package" />
-                                    </f:else>
-                                </f:if>
-                            </a>
+                                <a href="{pageLink}"{f:if(condition: pageTarget, then: ' target="{pageTarget}"')} class="btn btn-secondary" title="{page.title}" data-toggle="tooltip">
+                                    <f:if condition="{data.readmore_label}">
+                                        <f:then>
+                                            {data.readmore_label}
+                                        </f:then>
+                                        <f:else>
+                                            <f:translate key="readmore" extensionName="bootstrap_package" />
+                                        </f:else>
+                                    </f:if>
+                                </a>
+                            </div>
                         </div>
                     </div>
 

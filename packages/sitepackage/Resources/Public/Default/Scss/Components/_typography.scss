@@ -162,3 +162,23 @@ ol + h1, ol + h2, ol + h3, ol + h4, ol + h5 {
 .text-right {
     text-align: right;
 }
+
+a {
+    text-decoration: none;
+    font-weight: inherit;
+    &:hover {
+        text-decoration: underline;
+    }
+    span {
+        font-weight:inherit;
+    }
+}
+
+.frame {
+    h1 a:not([class]), h2 a:not([class]), h3 a:not([class]), h4 a:not([class]), h5 a:not([class]), h6 a:not([class]) {
+        color: $primary;
+        &:hover {
+            color: $primary
+        }
+    }
+}

@@ -20,16 +20,11 @@
                                     </f:if>
                                 </div>
                             </f:if>
-                            <f:if condition="{theme.meta.enable} || {theme.language.enable} || {theme.copyright.enable} || {theme.socialmedia.enable}">
+                            <f:if condition="{theme.meta.enable} || {theme.copyright.enable} || {theme.socialmedia.enable}">
                                 <div class="footer-info-section">
                                     <f:if condition="{theme.meta.enable}">
                                         <div class="footer-meta">
                                             <f:render partial="Navigation/Meta" arguments="{_all}" />
-                                        </div>
-                                    </f:if>
-                                    <f:if condition="{theme.language.enable}">
-                                        <div class="footer-language">
-                                            <f:render partial="Navigation/Language" arguments="{_all}" />
                                         </div>
                                     </f:if>
                                     <f:if condition="{theme.copyright.enable}">

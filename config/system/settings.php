@@ -92,7 +92,7 @@ return [
             'archiveDate' => 'date',
             'categoryBeGroupTceFormsRestriction' => '0',
             'categoryRestriction' => 'none',
-            'contentElementRelation' => '0',
+            'contentElementRelation' => '1',
             'dateTimeNotRequired' => '0',
             'hidePageTreeForAdministrationModule' => '0',
             'manualSorting' => '0',

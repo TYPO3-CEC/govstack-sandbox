@@ -1,6 +1,11 @@
 base: '%env(HOST_PORTAL)%'
 dependencies:
-  - sitepackage/MainPortal
+  - sitepackage/main-portal
+errorHandling:
+  -
+    errorCode: 404
+    errorHandler: Page
+    errorContentSource: 't3://page?uid=83'
 languages:
   -
     title: English
@@ -8,7 +13,7 @@ languages:
     languageId: 0
     base: /
     locale: en_US.UTF-8
-    navigationTitle: English
+    navigationTitle: EN
     flag: us
   -
     title: German
@@ -16,10 +21,10 @@ languages:
     locale: de_DE.UTF-8
     hreflang: de
     base: /de/
-    websiteTitle: ''
-    navigationTitle: ''
+    websiteTitle: Hauptportal
+    navigationTitle: DE
     fallbackType: fallback
-    fallbacks: ''
+    fallbacks: '0'
     flag: de
     languageId: 1
 rootPageId: 1

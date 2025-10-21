@@ -1,4 +1,15 @@
 plugin.tx_indexedsearch {
+  view {
+      templateRootPaths {
+          100 = EXT:sitepackage/Resources/Private/Templates/Extensions/IndexedSearch/
+      }
+      partialRootPaths {
+          100 = EXT:sitepackage/Resources/Private/Templates/Extensions/IndexedSearch/
+      }
+      layoutRootPaths {
+          100 = EXT:sitepackage/Resources/Private/Templates/Extensions/IndexedSearch/
+      }
+  }
 	settings {
 		displayAdvancedSearchLink = 0
   }

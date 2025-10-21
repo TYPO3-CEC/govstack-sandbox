@@ -9,3 +9,6 @@ page:
       targetPid: 16
     footer:
       contactPid: 14
+indexedsearch:
+  rootPidList: 1
+  targetPid: 16

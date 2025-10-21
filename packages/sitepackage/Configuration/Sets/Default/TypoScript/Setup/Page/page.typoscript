@@ -9,9 +9,6 @@ page {
     jquery-pagination = https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.4/jquery.simplePagination.min.js
     theme-default = EXT:sitepackage/Resources/Public/Default/JavaScript/theme.js
   }
-  includeJSFooterlibs {
-    bootstrap_stickyheader = EXT:sitepackage/Resources/Public/JavaScript/BoostrapPackage/bootstrap.stickyheader.js
-  }
   10.dataProcessing {
     5 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
     5 {

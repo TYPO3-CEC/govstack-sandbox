@@ -1,7 +1,9 @@
-name: sitepackage/Default
+name: sitepackage/default
 label: TYPO3 GovStack Sandbox - Default SiteSet
 dependencies:
   - typo3/seo-sitemap
+  - typo3/indexed-search
   - georgringer/news
+  - georgringer/news-twb5
   - bootstrap-package/full
   - bootstrap-package/google-font

@@ -1,3 +1,23 @@
+// Function to open the overlay
+function openOverlay() {
+  $(".overlay").addClass("active");
+}
+
+// Function to close the overlay
+function closeOverlay() {
+  $(".overlay").removeClass("active");
+}
+
+// Trigger span click event
+$(".search-icon-trigger").click(function () {
+  openOverlay();
+});
+
+// Close overlay when the close button is clicked
+$(".close-overlay").click(function () {
+  closeOverlay();
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     var categoryTabs = document.querySelectorAll('.frame-type-category_tab');
     categoryTabs.forEach((categoryTab) => {

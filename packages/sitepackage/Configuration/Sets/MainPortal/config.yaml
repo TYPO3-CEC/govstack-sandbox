@@ -1,5 +1,5 @@
-name: sitepackage/MainPortal
+name: sitepackage/main-portal
 label: TYPO3 GovStack Sandbox - Main Portal
 
 dependencies:
-  - sitepackage/Default
+  - sitepackage/default

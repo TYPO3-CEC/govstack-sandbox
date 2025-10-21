@@ -1,7 +1,7 @@
+@import 'EXT:sitepackage/Configuration/TypoScript/Setup/ContentElements/'
 @import 'EXT:sitepackage/Configuration/TypoScript/Setup/Library/'
 @import 'EXT:sitepackage/Configuration/TypoScript/Setup/Extensions/'
 @import './TypoScript/Setup/Page/'
-@import './TypoScript/Setup/ContentElements/'
 
 #[applicationContext matches "/^Development"]
     config.compressCss = 0

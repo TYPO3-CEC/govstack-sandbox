@@ -3,6 +3,7 @@ h1 {
     margin-bottom: 25px;
     letter-spacing: -4%;
     font-weight: 600;
+    color: #0a0050;
 
     &.small {
         font-size: 25px;
@@ -14,6 +15,7 @@ h2 {
     margin-bottom: 18px;
     letter-spacing: -4%;
     font-weight: 600;
+    color: #0a0050;
 
     &.small {
         font-size: 21px;
@@ -26,6 +28,7 @@ h3 {
     margin-bottom: 18px;
     letter-spacing: -2%;
     font-weight: 600;
+    color: #0a0050;
 
     &.small {
         font-size: 21px;
@@ -38,6 +41,7 @@ h4 {
     margin-bottom: 15px;
     letter-spacing: -2%;
     font-weight: 600;
+    color: #0a0050;
 
     &.small {
         font-size: 17px;
@@ -50,6 +54,7 @@ h5 {
     margin-bottom: 12px;
     letter-spacing: 2%;
     font-weight: 600;
+    color: #0a0050;
 
     &.small {
         font-size: 19px;
@@ -61,6 +66,7 @@ h6 {
     margin-bottom: 10px;
     letter-spacing: -2%;
     font-weight: 600;
+    color: #0a0050;
 
     &.small {
         font-size: 12px;
@@ -69,10 +75,16 @@ h6 {
 }
 
 p {
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 14px;
+    line-height: 16px;
     letter-spacing: 0;
     font-weight: normal;
+
+    &.p--size-small {
+    font-size: 11px;
+    line-height: 13px
+    letter-spacing: 0;
+    }
 
     &.p--size-two {
         font-size: 14px;
@@ -85,6 +97,13 @@ p {
         line-height: 18px;
         letter-spacing: 0;
     }
+}
+
+ul, ol {
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0;
+    font-weight: normal;
 }
 
 .text-justify {

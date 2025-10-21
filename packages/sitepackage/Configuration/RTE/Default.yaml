@@ -20,6 +20,12 @@ editor:
             - { name: "Small font", element: "p", attributes: { 'class': 'p--size-small' } }
             - { name: "Large font", element: "p", attributes: { 'class': 'p--size-two' } }
             - { name: "Extra-large font", element: "p", attributes: { 'class': 'p--size-three' } }
+            - { name: "H1 small font", element: "h1", attributes: { 'class': 'small' } }
+            - { name: "H2 small font", element: "h2", attributes: { 'class': 'small' } }
+            - { name: "H3 small font", element: "h3", attributes: { 'class': 'small' } }
+            - { name: "H4 small font", element: "h4", attributes: { 'class': 'small' } }
+            - { name: "H5 small font", element: "h5", attributes: { 'class': 'small' } }
+            - { name: "H6 small font", element: "h6", attributes: { 'class': 'small' } }
 
             - { name: "Primary Button", element: "a", attributes: { 'class': 'btn btn-primary' } }
             - { name: "Primary Outline Button", element: "a", attributes: { 'class': 'btn btn-outline-primary' } }

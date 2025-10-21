@@ -12,6 +12,10 @@
 			<trans-unit id="copyright.text">
 				<source>All rights reserved</source>
 			</trans-unit>
+			<trans-unit id="search.submit">
+				<source>Search</source>
+			</trans-unit>
+
         </body>
     </file>
 </xliff>

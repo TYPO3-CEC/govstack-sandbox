@@ -79,6 +79,4 @@ plugin:
       layoutRootPath: EXT:sitepackage/Resources/Private/Layouts/ContentElements/
       templateRootPath: EXT:sitepackage/Resources/Private/Templates/ContentElements/
       partialRootPath: EXT:sitepackage/Resources/Private/Partials/ContentElements/
-indexedsearch:
-  rootPidList: 1
-  targetPid: 16
+
