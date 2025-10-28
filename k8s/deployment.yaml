@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: typo3
-  namespace: cms-govstack
+  namespace: cms-system
 spec:
   replicas: 1
   selector:
@@ -51,7 +51,7 @@ spec:
                   name: db-secret
                   key: DB_PASSWORD
             - name: REDIS_HOST
-              value: redis.cms-govstack.svc.cluster.local
+              value: redis.cms-system.svc.cluster.local
             - name: TYPO3_CONTEXT
               value: Production
             - name: TRUSTED_HOSTS_PATTERN

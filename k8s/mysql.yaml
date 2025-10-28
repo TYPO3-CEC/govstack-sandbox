@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: mysql-secret
-  namespace: govstack-cms
+  namespace: cms-system
 type: Opaque
 data:
   MYSQL_ROOT_PASSWORD: Y2hhbmdlbWU=
@@ -14,7 +14,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mysql
-  namespace: govstack-cms
+  namespace: cms-system
 spec:
   clusterIP: None
   selector:
@@ -27,7 +27,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mysql
-  namespace: govstack-cms
+  namespace: cms-system
 spec:
   selector:
     matchLabels:
