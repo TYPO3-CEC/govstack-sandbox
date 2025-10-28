@@ -1,0 +1,40 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  creationTimestamp: "2025-10-27T22:21:13Z"
+  generation: 1
+  name: typo3-tls
+  namespace: cms-system
+  ownerReferences:
+  - apiVersion: networking.k8s.io/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Ingress
+    name: typo3
+    uid: 395b4a7e-8454-4566-b5a9-bdd1dac52288
+  resourceVersion: "5318960"
+  uid: 40e00c8d-c98d-4ff7-beaa-6aedd8d91f67
+spec:
+  dnsNames:
+  - portal.cms.assembly.govstack.global
+  - institution.cms.assembly.govstack.global
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: letsencrypt
+  secretName: typo3-tls
+  usages:
+  - digital signature
+  - key encipherment
+status:
+  conditions:
+  - lastTransitionTime: "2025-10-27T22:21:39Z"
+    message: Certificate is up to date and has not expired
+    observedGeneration: 1
+    reason: Ready
+    status: "True"
+    type: Ready
+  notAfter: "2026-01-25T21:23:08Z"
+  notBefore: "2025-10-27T21:23:09Z"
+  renewalTime: "2025-12-26T21:23:08Z"
+  revision: 1

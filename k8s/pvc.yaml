@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: files-pvc
+  namespace: cms-system
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: <your-storageclass>
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: var-pvc
+  namespace: cms-system
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: <your-storageclass>
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: typo3temp-pvc
+  namespace: cms-system
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: <your-storageclass>

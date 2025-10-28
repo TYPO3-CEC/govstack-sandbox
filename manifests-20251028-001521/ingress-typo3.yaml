@@ -1,0 +1,55 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"alb.ingress.kubernetes.io/listen-ports":"[{\"HTTP\":80}]","alb.ingress.kubernetes.io/scheme":"internet-facing","alb.ingress.kubernetes.io/target-type":"ip"},"name":"typo3","namespace":"cms-system"},"spec":{"ingressClassName":"alb","rules":[{"host":"institution.cms.assembly.govstack.global","http":{"paths":[{"backend":{"service":{"name":"typo3-svc","port":{"number":80}}},"path":"/","pathType":"Prefix"}]}},{"host":"portal.cms.assembly.govstack.global","http":{"paths":[{"backend":{"service":{"name":"typo3-svc","port":{"number":80}}},"path":"/","pathType":"Prefix"}]}},{"host":"*.cms.assembly.govstack.global","http":{"paths":[{"backend":{"service":{"name":"typo3-svc","port":{"number":80}}},"path":"/","pathType":"Prefix"}]}}]}}
+  creationTimestamp: "2025-10-22T20:24:25Z"
+  generation: 3
+  name: typo3
+  namespace: cms-system
+  resourceVersion: "5318714"
+  uid: 395b4a7e-8454-4566-b5a9-bdd1dac52288
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: institution.cms.assembly.govstack.global
+    http:
+      paths:
+      - backend:
+          service:
+            name: typo3-svc
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  - host: portal.cms.assembly.govstack.global
+    http:
+      paths:
+      - backend:
+          service:
+            name: typo3-svc
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  - host: '*.cms.assembly.govstack.global'
+    http:
+      paths:
+      - backend:
+          service:
+            name: typo3-svc
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - portal.cms.assembly.govstack.global
+    - institution.cms.assembly.govstack.global
+    secretName: typo3-tls
+status:
+  loadBalancer:
+    ingress:
+    - ip: 10.0.0.100
