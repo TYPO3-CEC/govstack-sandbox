@@ -3,137 +3,198 @@ kind: Deployment
 metadata:
   name: typo3
   namespace: cms-system
+  labels:
+    app: typo3
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: typo3
+  strategy:
+    type: Recreate
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
   template:
     metadata:
       labels:
         app: typo3
+      annotations:
+        force-restart: '1761687082'
     spec:
-      imagePullSecrets:
-        - name: regcred
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
       securityContext:
         fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+      volumes:
+        - name: app
+          emptyDir: {}
+        - name: php-run
+          emptyDir: {}
+        - name: nginx-conf
+          configMap:
+            name: nginx-conf
+            defaultMode: 420
+        - name: nginx-cache
+          emptyDir: {}
+        - name: nginx-run
+          emptyDir: {}
+        - name: ssh-key
+          secret:
+            secretName: git-ssh-key
+            defaultMode: 420
+            optional: true
+        - name: app-dotenv
+          configMap:
+            name: app-dotenv
+            defaultMode: 420
+        - name: var-pvc
+          persistentVolumeClaim:
+            claimName: var-pvc
+        - name: files-pvc
+          persistentVolumeClaim:
+            claimName: files-pvc
+        - name: typo3temp-pvc
+          persistentVolumeClaim:
+            claimName: typo3temp-pvc
+        - name: php-ini
+          configMap:
+            name: php-ini
+            items:
+              - key: 99-typo3.ini
+                path: 99-typo3.ini
+
       initContainers:
-        - name: init-app
-          image: <registry>/typo3/typo3-app:13
-          command:
-            - /bin/sh
-            - -lc
-            - tar -xzf /artifact/typo3.tar.gz -C /var/www && mv /var/www/typo3 /var/www/html && chown -R 1000:1000 /var/www/html
+        - name: prepare-php-run
+          image: busybox:1.36
+          command: [ "/bin/sh","-lc" ]
+          args: [ "install -d -m 0755 -o 1000 -g 1000 /var/run/php" ]
+          volumeMounts:
+            - name: php-run
+              mountPath: /var/run/php
+        - name: bootstrap
+          image: php:8.3-cli-alpine
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/sh","-lc"]
+          args:
+            - |
+              set -e
+              apk add --no-cache git openssh-client rsync curl
+              mkdir -p /tmp/ssh
+              if [ -f /root/.ssh/id_ed25519 ]; then
+                cp /root/.ssh/id_ed25519 /tmp/ssh/id_ed25519
+                chmod 600 /tmp/ssh/id_ed25519
+              fi
+              ssh-keyscan -t rsa github.com > /tmp/ssh/known_hosts
+              export GIT_SSH_COMMAND="ssh -i /tmp/ssh/id_ed25519 -o StrictHostKeyChecking=yes -o UserKnownHostsFile=/tmp/ssh/known_hosts"
+              git clone --branch main --depth 1 git@github.com:TYPO3-CEC/govstack-sandbox.git /tmp/repo || echo "git skipped"
+              curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+              cd /tmp/repo || (mkdir -p /tmp/repo && cd /tmp/repo)
+              composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader --no-progress --ignore-platform-req=ext-intl
+              rsync -a /tmp/repo/ /var/www/html/ --exclude=public/fileadmin --exclude=public/typo3temp --exclude=var
+              cp /tmp/app-dotenv/.env /var/www/html/.env || true
           volumeMounts:
             - name: app
-              mountPath: /var/www
+              mountPath: /var/www/html
+            - name: ssh-key
+              mountPath: /root/.ssh
+            - name: app-dotenv
+              mountPath: /tmp/app-dotenv
       containers:
         - name: php-fpm
-          image: <registry>/typo3/typo3-php-fpm:13-php83
+          image: php:8.3-fpm
           imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 9000
-              name: fpm
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+            allowPrivilegeEscalation: false
           env:
-            - name: DB_DRIVER
-              value: mysqli
+            - { name: LANG,   value: "en_US.UTF-8" }
+            - { name: LC_ALL, value: "en_US.UTF-8" }
             - name: DB_HOST
-              value: mysql
-            - name: DB_PORT
-              value: "3306"
+              valueFrom: { secretKeyRef: { name: app-typo3-db, key: DB_HOST } }
             - name: DB_NAME
-              value: typo3
+              valueFrom: { secretKeyRef: { name: app-typo3-db, key: DB_NAME } }
             - name: DB_USER
-              value: typo3
+              valueFrom: { secretKeyRef: { name: app-typo3-db, key: DB_USER } }
             - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: db-secret
-                  key: DB_PASSWORD
-            - name: REDIS_HOST
-              value: redis.cms-system.svc.cluster.local
-            - name: TYPO3_CONTEXT
-              value: Production
-            - name: TRUSTED_HOSTS_PATTERN
-              value: ^([a-z0-9-]+)\.cms\.assembly\.govstack\.global$
-            - name: TRUSTED_PROXY_IPS
-              value: 10.0.0.0/24,10.255.0.0/24
-          readinessProbe:
-            tcpSocket:
-              port: 9000
-            initialDelaySeconds: 5
-          livenessProbe:
-            tcpSocket:
-              port: 9000
-            initialDelaySeconds: 10
-          resources:
-            requests:
-              cpu: "200m"
-              memory: "512Mi"
-            limits:
-              cpu: "1"
-              memory: "1Gi"
+              valueFrom: { secretKeyRef: { name: app-typo3-db, key: DB_PASSWORD } }
+          command: ["/bin/sh","-lc"]
+          args:
+            - |
+              set -e
+              apt-get update && apt-get install -y --no-install-recommends \
+              locales libicu-dev libzip-dev libjpeg62-turbo-dev libpng-dev libwebp-dev libfreetype6-dev \
+              graphicsmagick ghostscript librsvg2-bin \
+              && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype \
+              && docker-php-ext-install -j"$(nproc)" mysqli pdo pdo_mysql intl zip gd exif \
+              && docker-php-ext-enable opcache \
+              && rm -rf /var/lib/apt/lists/*
+              echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen && update-locale LANG=en_US.UTF-8
+              export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+              cat >/usr/local/etc/php-fpm.d/zzz-sock.conf <<'CONF'
+              [www]
+              user = 1000
+              group = 1000
+              listen = /var/run/php/php-fpm.sock
+              listen.owner = 1000
+              listen.group = 1000
+              listen.mode = 0660
+              catch_workers_output = yes
+              php_admin_flag[log_errors] = on
+              php_admin_value[error_log] = /proc/self/fd/2
+              CONF
+              php-fpm -F
+          volumeMounts:
+            - name: app
+              mountPath: /var/www/html
+            - name: php-run
+              mountPath: /var/run/php
+            - name: var-pvc
+              mountPath: /var/www/html/var
+            - name: files-pvc
+              mountPath: /var/www/html/public/fileadmin
+            - name: typo3temp-pvc
+              mountPath: /var/www/html/public/typo3temp
+            - name: php-ini
+              mountPath: /usr/local/etc/php/conf.d/99-typo3.ini
+              subPath: 99-typo3.ini
+              readOnly: true
+
+        - name: nginx
+          image: nginx:1.28-alpine
+          imagePullPolicy: IfNotPresent
           securityContext:
             runAsUser: 1000
             runAsGroup: 1000
             allowPrivilegeEscalation: false
-          volumeMounts:
-            - name: app
-              mountPath: /var/www/html
-            - name: files
-              mountPath: /var/www/html/public/fileadmin
-            - name: var
-              mountPath: /var/www/html/var
-            - name: tmp
-              mountPath: /var/www/html/public/typo3temp
-        - name: nginx
-          image: nginx:stable-alpine
           ports:
             - containerPort: 8080
-              name: http
+              protocol: TCP
           readinessProbe:
-            httpGet:
-              path: /healthz
-              port: http
-            initialDelaySeconds: 5
-          livenessProbe:
-            httpGet:
-              path: /healthz
-              port: http
-            initialDelaySeconds: 10
-          resources:
-            requests:
-              cpu: "100m"
-              memory: "128Mi"
-            limits:
-              cpu: "500m"
-              memory: "256Mi"
-          securityContext:
-            runAsUser: 101
-            runAsGroup: 101
-            allowPrivilegeEscalation: false
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 3
+            periodSeconds: 10
           volumeMounts:
             - name: app
               mountPath: /var/www/html
               readOnly: true
+            - name: php-run
+              mountPath: /var/run/php
+              readOnly: false
             - name: nginx-conf
               mountPath: /etc/nginx/nginx.conf
               subPath: nginx.conf
             - name: nginx-conf
               mountPath: /etc/nginx/conf.d/default.conf
               subPath: site-typo3.conf
-      volumes:
-        - name: app
-          emptyDir: {}
-        - name: nginx-conf
-          configMap:
-            name: nginx-conf
-        - name: files
-          persistentVolumeClaim:
-            claimName: files-pvc
-        - name: var
-          persistentVolumeClaim:
-            claimName: var-pvc
-        - name: tmp
-          persistentVolumeClaim:
-            claimName: typo3temp-pvc
+            - name: nginx-cache
+              mountPath: /var/cache/nginx
+            - name: nginx-run
+              mountPath: /var/run/nginx
+            - name: files-pvc
+              mountPath: /var/www/html/public/fileadmin
+              readOnly: true
+            - name: typo3temp-pvc
+              mountPath: /var/www/html/public/typo3temp

@@ -4,11 +4,6 @@ metadata:
   name: mysql-secret
   namespace: cms-system
 type: Opaque
-data:
-  MYSQL_ROOT_PASSWORD: Y2hhbmdlbWU=
-  MYSQL_PASSWORD: Y2hhbmdlbWU=
-  MYSQL_USER: dHlwbzM=
-  MYSQL_DATABASE: dHlwbzM=
 ---
 apiVersion: v1
 kind: Service

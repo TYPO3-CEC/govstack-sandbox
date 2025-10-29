@@ -9,7 +9,6 @@ spec:
   resources:
     requests:
       storage: 20Gi
-  storageClassName: <your-storageclass>
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -22,7 +21,6 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  storageClassName: <your-storageclass>
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -35,4 +33,3 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: <your-storageclass>
