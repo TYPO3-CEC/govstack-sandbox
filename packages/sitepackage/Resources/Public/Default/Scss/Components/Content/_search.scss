@@ -1,0 +1,42 @@
+.frame-type-indexedsearch_pi2 {
+    article {
+        &.card {
+            border:none;
+            padding: 0;
+            margin-bottom: 32px;
+            .card-body {
+                padding:0;
+            }
+            h4 {
+                font-size: clamp(1.19rem, 2.5vw, 1.1875rem);
+                line-height: clamp(1.44rem, 3vw, 1.4375rem);
+                letter-spacing: 2%;
+                font-weight: 600;
+                color: #003F82;
+                text-decoration: none;
+                margin-bottom: 0;
+                a {
+                    font-size: clamp(1.19rem, 2.5vw, 1.1875rem);
+                    line-height: clamp(1.44rem, 3vw, 1.4375rem);
+                    letter-spacing: 2%;
+                    font-weight: 600;
+                    color: #003F82;
+                    text-decoration: none;
+                }
+            }
+            ul.list-inline {
+                display: none;
+            }
+        }
+    }
+    ul.tx-indexedsearch-browsebox {
+        margin: 0;
+        padding:0;
+        display: flex;
+        margin-bottom: 32px;
+        gap: 16px;
+        li {
+            list-style: none;
+        }
+    }
+}

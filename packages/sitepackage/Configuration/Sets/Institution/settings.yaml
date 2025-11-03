@@ -1,0 +1,14 @@
+page:
+  logo:
+    file: 'EXT:sitepackage/Resources/Public/Default/Images/Logo/logo.svg'
+    height: 49
+    linktitle: 'LLL:EXT:sitepackage/Resources/Private/Language/locallang.xlf:site.title'
+    alt: 'LLL:EXT:sitepackage/Resources/Private/Language/locallang.xlf:site.title'
+  theme:
+    search:
+      targetPid: 76
+    footer:
+      contactPid: 71
+indexedsearch:
+  rootPidList: 32
+  targetPid: 76

@@ -1,0 +1,19 @@
+.table-responsive {
+    border: 1px solid $lighter;
+    border-radius: 1rem;
+    padding: 1rem;
+    background: #ffffff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12);
+
+    table {
+        width: 100%;
+
+        tr {
+            border-bottom: 1px solid $dark;
+            th, td {
+                padding: .6rem .5rem;
+                text-align: left;
+            }
+        }
+    }
+}

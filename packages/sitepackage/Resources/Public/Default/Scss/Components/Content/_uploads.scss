@@ -1,0 +1,24 @@
+.filelink-list {
+    .filelink-item {
+        margin-bottom: 2rem;
+        .filelink-heading {
+            .filelink-filename {
+                font-size: clamp(1.2rem, 3vw, 1.4375rem); // 23px = 1.4375rem
+                margin-bottom: clamp(0.6rem, 2vw, 1rem);
+                letter-spacing: 2%;
+                font-weight: 800;
+                color: $primary;
+            }
+
+            .filelink-filesize {
+                font-size: 1rem; // 16px = 1rem
+                line-height: 1.5rem; // 24px = 1.5rem
+                letter-spacing: 0;
+            }
+        }
+
+        .filelink-media {
+            border: 1px solid #CACACA;
+        }
+    }
+}

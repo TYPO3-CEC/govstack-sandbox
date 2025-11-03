@@ -1,0 +1,15 @@
+.sociallinks {
+    .sociallinks-list {
+        justify-content: left;
+        .sociallinks-item {
+            width: auto;
+            .sociallinks-link {
+                justify-content: left;
+                color: $tertiary;
+                .sociallinks-link-icon {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

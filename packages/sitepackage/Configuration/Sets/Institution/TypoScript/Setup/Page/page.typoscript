@@ -1,0 +1,5 @@
+page {
+  includeCSS {
+    theme-specific = EXT:sitepackage/Resources/Public/Institution/Scss/theme.scss
+  }
+}

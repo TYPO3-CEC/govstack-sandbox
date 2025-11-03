@@ -1,0 +1,14 @@
+.news {
+    .news-list-view {
+        .article {
+            display:flex;
+            flex-direction: row;
+            .news-img-wrap {
+                margin-right: 2rem;
+            }
+        }
+    }
+    .frame-container {
+        padding: 0;
+    }
+}
