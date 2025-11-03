@@ -2,10 +2,23 @@
 
 (static function (): void {
 
-    if (getenv('IS_DDEV_PROJECT') == 'true') {
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['setMemoryLimit'] = 512;
+
+    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['driver'] = 'mysqli';
+    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['host'] = getenv('DB_HOST');
+    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['dbname'] = getenv('DB_NAME');
+    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['user'] = getenv('DB_USER');
+    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['password'] = getenv('DB_PASSWORD');
+
+
+    if (getenv('IS_DDEV_PROJECT') === 'true') {
         $GLOBALS['TYPO3_CONF_VARS']['BE']['sessionTimeout'] = 28800;
         $GLOBALS['TYPO3_CONF_VARS']['BE']['debug'] = true;
-
+        $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['driver'] = 'mysqli';
+        $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['host'] = 'db';
+        $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['dbname'] = 'db';
+        $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['user'] = 'db';
+        $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['password'] = 'db';
         // FE
         $GLOBALS['TYPO3_CONF_VARS']['FE']['debug'] = true;
 

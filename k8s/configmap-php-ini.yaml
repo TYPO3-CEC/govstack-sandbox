@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: php-ini
+  namespace: cms-system
+data:
+  99-typo3.ini: |
+    max_execution_time = 240
+    max_input_vars = 1500
