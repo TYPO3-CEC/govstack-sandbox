@@ -22,12 +22,18 @@ DDEV provides a Docker-based local development environment that is easy to set u
 
 3. Import the database:
    ```bash
-   ddev import-db --file=./.dumps/database.sql.gz
+   ddev import-db --file=dump/database.sql.gz
    ```
 
-4. Install composer dependencies:
+4. Unzip fileadmin
    ```bash
-   ddev composer install
+   cp dump/fileadmin.tar.gz public/
+   ```
+   ```bash
+   ddev exec tar xzf public/fileadmin.tar.gz -C public
+   ```
+   ```bash
+   rm public/fileadmin.tar.gz
    ```
    
 5. Access your TYPO3 instance:  
@@ -57,17 +63,23 @@ DDEV provides a Docker-based local development environment that is easy to set u
   ddev delete
   ```
   
+- Start site in browser (can be use instead of ddev start - starts project + open in browser)
+  ```bash
+  ddev launch
+  ```
 
 - Import database:
   ```bash
-  ddev import-db --src=./.dumps/database.sql.gz
+  ddev import-db --file=dump/database.sql.gz
   ```
 
 - Export database:
   ```bash
-  ddev export-db --file=./.dumps/backup.sql.gz
+  ddev export-db --file=dump/#dump_name#.sql.gz
   ```
-
+  #dump_name# - name of the file for the database dump Ex: database_local_03_may
+  
+  
 - Access PHP container shell:
   ```bash
   ddev ssh
