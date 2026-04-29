@@ -1,0 +1,4 @@
+name: sitepackage/university
+label: TYPO3 GovStack Sandbox - University Example
+dependencies:
+  - sitepackage/default

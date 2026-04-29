@@ -1,0 +1,201 @@
+/* University theme — hero slider.
+   Targets the carousel rendered by bk2k/bootstrap-package
+   (`.carousel.carousel-small.carousel-fade`) and remaps it to the
+   design at Resources/Public/Design/university/university_final.html. */
+
+:root {
+    --uni-primary:        #2d2b7b;
+    --uni-primary-rgb:    45, 43, 123;
+    --uni-secondary:      #eef5ff;
+    --uni-success:        #59d1a1;
+    --uni-success-hover:  #47c794;
+    --uni-success-active: #3cbd89;
+    --uni-success-text:   #00319d;
+    --uni-text:           #2d2f5f;
+    --uni-border:         #d7e4f2;
+}
+
+.carousel.carousel-small.carousel-fade {
+    --bs-carousel-indicator-active-bg:      var(--uni-primary);
+    --bs-carousel-indicator-opacity:        .35;
+    --bs-carousel-indicator-active-opacity: 1;
+    --bs-carousel-control-color:            var(--uni-primary);
+
+    background-color: var(--uni-secondary);
+}
+
+/* Hero proportions — overrides bk2k's 300/400 px .item heights. */
+.carousel.carousel-small.carousel-fade .item {
+    min-height: 34rem;
+    height: auto;
+}
+
+@media (max-width: 991.98px) {
+    .carousel.carousel-small.carousel-fade .item { min-height: 38rem; }
+}
+
+@media (max-width: 767.98px) {
+    .carousel.carousel-small.carousel-fade .item { min-height: 42rem; }
+}
+
+/* Background image: light desaturation + soft left-to-right wash overlay
+   so the white card has enough contrast at any image. */
+.carousel.carousel-small.carousel-fade .carousel-backgroundimage {
+    filter: saturate(.9);
+}
+
+.carousel.carousel-small.carousel-fade .carousel-backgroundimage-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(239, 245, 255, .45) 0%,
+        rgba(239, 245, 255, .25) 45%,
+        rgba(239, 245, 255, .10) 100%
+    );
+    pointer-events: none;
+}
+
+.carousel.carousel-small.carousel-fade .carousel-content {
+    z-index: 2;
+}
+
+.carousel.carousel-small.carousel-fade .carousel-content-inner {
+    align-items: center;
+    padding: 3rem 0;
+}
+
+/* White translucent card, ~2/3 of the row, left-aligned. */
+.carousel.carousel-small.carousel-fade .carousel-box {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    width: 66.6667%;
+    max-width: 66.6667%;
+    padding: 2.5rem 3rem;
+    border-radius: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 1rem 2rem rgba(34, 46, 100, .12);
+}
+
+@media (max-width: 991.98px) {
+    .carousel.carousel-small.carousel-fade .carousel-box {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .carousel.carousel-small.carousel-fade .carousel-box {
+        padding: 1.5rem;
+    }
+}
+
+/* Reorder children of the card so the subheader renders as a kicker
+   pill above the headline (the live DOM emits h1 then h2). */
+.carousel.carousel-small.carousel-fade .carousel-item-subheader { order: 1; }
+.carousel.carousel-small.carousel-fade .carousel-item-header    { order: 2; }
+.carousel.carousel-small.carousel-fade .carousel-item-bodytext  { order: 3; }
+.carousel.carousel-small.carousel-fade .carousel-item-button    { order: 4; }
+
+/* Subheader → uppercase pill kicker. */
+.carousel.carousel-small.carousel-fade .carousel-item-subheader {
+    align-self: flex-start;
+    margin: 0 0 1rem;
+    padding: .35rem .75rem;
+    border-radius: 999px;
+    background-color: #e6eeff;
+    color: var(--uni-primary);
+    font-size: .75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+/* Headline → big navy bold. */
+.carousel.carousel-small.carousel-fade .carousel-item-header {
+    margin: 0 0 1.25rem;
+    color: var(--uni-primary);
+    font-weight: 700;
+    line-height: 1.15;
+    font-size: clamp(2rem, 2.4vw, 2.6rem);
+}
+
+/* Body copy → muted lead paragraph (solid color, no opacity). */
+.carousel.carousel-small.carousel-fade .carousel-item-bodytext {
+    margin: 0 0 1.5rem;
+    color: #5a5e85;
+    font-size: 1.125rem;
+    font-weight: 400;
+}
+
+.carousel.carousel-small.carousel-fade .carousel-item-bodytext > *:last-child {
+    margin-bottom: 0;
+}
+
+/* CTA button → success-green pill, overriding upstream .btn-secondary. */
+.carousel.carousel-small.carousel-fade .carousel-item-button {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: .75rem 1.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--uni-success);
+    background-color: var(--uni-success);
+    color: var(--uni-success-text);
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    box-shadow: 0 .75rem 1.5rem rgba(89, 209, 161, .22);
+    transition:
+        background-color .2s ease,
+        border-color     .2s ease,
+        color            .2s ease,
+        transform        .2s ease,
+        box-shadow       .2s ease;
+}
+
+.carousel.carousel-small.carousel-fade .carousel-item-button:hover,
+.carousel.carousel-small.carousel-fade .carousel-item-button:focus-visible {
+    background-color: var(--uni-success-hover);
+    border-color:     var(--uni-success-hover);
+    color:            var(--uni-success-text);
+    text-decoration:  none;
+    transform:        translateY(-1px);
+    box-shadow: 0 1rem 1.8rem rgba(89, 209, 161, .28);
+}
+
+.carousel.carousel-small.carousel-fade .carousel-item-button:active {
+    background-color: var(--uni-success-active);
+    border-color:     var(--uni-success-active);
+    color:            var(--uni-success-text);
+}
+
+/* Indicator pills — narrow rounded rectangles, navy. */
+.carousel.carousel-small.carousel-fade .carousel-indicators {
+    margin-bottom: 1.5rem;
+}
+
+.carousel.carousel-small.carousel-fade .carousel-indicators button {
+    width:  2.75rem;
+    height: .25rem;
+    border-radius: 999px;
+    background-color: var(--uni-primary);
+    border: 0;
+    opacity: var(--bs-carousel-indicator-opacity);
+}
+
+.carousel.carousel-small.carousel-fade .carousel-indicators button.active {
+    height: .25rem;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    opacity: var(--bs-carousel-indicator-active-opacity);
+}
+
+.carousel.carousel-small.carousel-fade .carousel-indicators button > span {
+    display: none;
+}

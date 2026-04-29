@@ -6,6 +6,7 @@ webserver_type: apache-fpm
 xdebug_enabled: false
 additional_hostnames:
     - institution
+    - university
 additional_fqdns: []
 database:
     type: mysql
@@ -18,4 +19,5 @@ composer_version: "2"
 web_environment:
     - HOST_PORTAL=https://govstack-typo3.ddev.site/
     - HOST_INSTITUTION=https://institution.ddev.site/
+    - HOST_UNIVERSITY=https://university.ddev.site/
 corepack_enable: false
