@@ -77,6 +77,7 @@
     border-radius: 1rem;
     background-color: #ffffff;
     box-shadow: 0 1rem 2rem rgba(34, 46, 100, .12);
+    opacity: 0.9;
 }
 
 @media (max-width: 991.98px) {
@@ -184,7 +185,7 @@
     width:  2.75rem;
     height: .25rem;
     border-radius: 999px;
-    background-color: var(--uni-primary);
+    background-color: #ffffff;
     border: 0;
     opacity: var(--bs-carousel-indicator-opacity);
 }
@@ -198,4 +199,145 @@
 
 .carousel.carousel-small.carousel-fade .carousel-indicators button > span {
     display: none;
+}
+
+
+/* ==========================================================================
+   Text & Image content element ("About" section below the slider).
+   Targets bk2k/bootstrap-package's .frame-type-textpic — image one side,
+   kicker pill + headline + body + green pill CTA on the other.
+   ========================================================================== */
+
+.frame-type-textpic .textpic {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+}
+
+@media (min-width: 992px) {
+    .frame-type-textpic .textpic {
+        flex-wrap: nowrap;
+        gap: 3rem;
+    }
+}
+
+.frame-type-textpic .textpic.textpic-right {
+    flex-direction: row-reverse;
+}
+
+.frame-type-textpic .textpic-gallery,
+.frame-type-textpic .textpic-text {
+    flex: 1 1 100%;
+    min-width: 0;
+}
+
+@media (min-width: 992px) {
+    .frame-type-textpic .textpic-gallery,
+    .frame-type-textpic .textpic-text {
+        flex: 1 1 50%;
+        max-width: 50%;
+    }
+}
+
+/* Image card — rounded with overflow hidden + soft shadow. */
+.frame-type-textpic .textpic-gallery .gallery-item {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 1rem 2rem rgba(34, 46, 100, .08);
+}
+
+.frame-type-textpic .textpic-gallery figure.image {
+    margin: 0;
+}
+
+.frame-type-textpic .textpic-gallery picture,
+.frame-type-textpic .textpic-gallery img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Right column: reorder so the subheader renders as a kicker pill above
+   the headline (the live DOM emits h2.element-header then h3.element-subheader). */
+.frame-type-textpic .textpic-text .frame-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.frame-type-textpic .textpic-text .element-subheader {
+    order: 1;
+    align-self: flex-start;
+    margin: 0 0 1rem;
+    padding: .35rem .75rem;
+    border-radius: 999px;
+    background-color: #e6eeff;
+    color: var(--uni-primary);
+    font-size: .75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.frame-type-textpic .textpic-text .element-header {
+    order: 2;
+    margin: 0;
+    color: var(--uni-primary);
+    font-weight: 700;
+    line-height: 1.2;
+    font-size: clamp(1.75rem, 2.4vw, 2.5rem);
+}
+
+/* Body paragraphs — solid muted color, no opacity. */
+.frame-type-textpic .textpic-text > p {
+    margin: 0 0 1rem;
+    color: #5a5e85;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.frame-type-textpic .textpic-text > p:last-child {
+    margin-bottom: 0;
+}
+
+/* Last paragraph that wraps a single link → render the link as a green pill button. */
+.frame-type-textpic .textpic-text > p:last-child > a:only-child {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    margin-top: .5rem;
+    padding: .75rem 1.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--uni-success);
+    background-color: var(--uni-success);
+    color: var(--uni-success-text);
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    box-shadow: 0 .75rem 1.5rem rgba(89, 209, 161, .22);
+    transition:
+        background-color .2s ease,
+        border-color     .2s ease,
+        color            .2s ease,
+        transform        .2s ease,
+        box-shadow       .2s ease;
+}
+
+.frame-type-textpic .textpic-text > p:last-child > a:only-child:hover,
+.frame-type-textpic .textpic-text > p:last-child > a:only-child:focus-visible {
+    background-color: var(--uni-success-hover);
+    border-color:     var(--uni-success-hover);
+    color:            var(--uni-success-text);
+    text-decoration:  none;
+    transform:        translateY(-1px);
+    box-shadow: 0 1rem 1.8rem rgba(89, 209, 161, .28);
+}
+
+.frame-type-textpic .textpic-text > p:last-child > a:only-child:active {
+    background-color: var(--uni-success-active);
+    border-color:     var(--uni-success-active);
+    color:            var(--uni-success-text);
 }
