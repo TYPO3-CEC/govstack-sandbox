@@ -341,3 +341,371 @@
     border-color:     var(--uni-success-active);
     color:            var(--uni-success-text);
 }
+
+
+/* ==========================================================================
+   "Quick links" section — card-group content element below the textpic.
+   Full-width light section background with N clickable cards. The visible
+   footer button is hidden and its link is stretched to cover the whole card.
+   ========================================================================== */
+
+.frame-type-card_group {
+    position: relative;
+    padding: 4rem 0;
+    isolation: isolate;
+}
+
+/* Edge-to-edge tinted background, regardless of any parent container width. */
+.frame-type-card_group::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left:  calc(50% - 50vw);
+    right: calc(50% - 50vw);
+    background-color: #f5f8fc;
+    z-index: -1;
+}
+
+/* Section header — centered title + lead description. */
+.frame-type-card_group .frame-header {
+    max-width: 50rem;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+}
+
+.frame-type-card_group .frame-header .element-header {
+    margin: 0 0 .75rem;
+    color: var(--uni-primary);
+    font-weight: 700;
+    line-height: 1.2;
+    font-size: clamp(1.75rem, 2.4vw, 2.25rem);
+}
+
+.frame-type-card_group .frame-header .element-subheader {
+    margin: 0;
+    color: #5a5e85;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Card grid — keep bk2k's flex layout (it already computes per-item widths
+   from --cardgroup-columns); just bump the gap. */
+.frame-type-card_group .card-group-element {
+    --cardgroup-gap: 1.5rem;
+}
+
+.frame-type-card_group .card-group-element-item {
+    position: relative;
+}
+
+.frame-type-card_group .card {
+    position: relative;
+    height: 100%;
+    border: 1px solid #d7e4f2;
+    border-radius: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 .5rem 1rem rgba(34, 46, 100, .06);
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+
+/* Lift on hover/focus — picks up keyboard focus too. */
+.frame-type-card_group .card-group-element-item:hover .card,
+.frame-type-card_group .card-group-element-item:focus-within .card {
+    transform: translateY(-2px);
+    box-shadow: 0 1rem 2rem rgba(34, 46, 100, .12);
+}
+
+.frame-type-card_group .card-body {
+    padding: 1.5rem;
+}
+
+.frame-type-card_group .card-title {
+    margin: 0 0 .5rem;
+    color: var(--uni-primary);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.frame-type-card_group .card .card-body p {
+    margin: 0;
+    color: #5a5e85;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* Hide the visible footer button — its link becomes a stretched overlay. */
+.frame-type-card_group .card-footer {
+    padding: 0;
+    background: transparent;
+    border: 0;
+}
+
+.frame-type-card_group .card-footer .btn {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: transparent;
+    box-shadow: none;
+    border-radius: 1rem;
+    z-index: 2;
+}
+
+.frame-type-card_group .card-footer .btn:focus-visible {
+    outline: 2px solid var(--uni-primary);
+    outline-offset: 2px;
+}
+
+/* Keep the link text accessible to screen readers but visually hidden. */
+.frame-type-card_group .card-footer .btn-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* ==========================================================================
+   News list — georgringer/news rendered as vertical cards (image top,
+   meta + title + teaser + green CTA). 3 columns on desktop.
+   ========================================================================== */
+
+.frame-type-news_newsliststicky {
+    padding: 4rem 0;
+}
+
+/* Section header — centered title + lead description (mirrors card_group). */
+.frame-type-news_newsliststicky .frame-header {
+    max-width: 50rem;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+}
+
+.frame-type-news_newsliststicky .frame-header .element-header {
+    margin: 0 0 .75rem;
+    color: var(--uni-primary);
+    font-weight: 700;
+    line-height: 1.2;
+    font-size: clamp(1.75rem, 2.4vw, 2.25rem);
+}
+
+.frame-type-news_newsliststicky .frame-header .element-subheader {
+    margin: 0;
+    color: #5a5e85;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Grid of news items. */
+.frame-type-news_newsliststicky .news .list-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    list-style: none;
+    border-radius: 0;
+}
+
+@media (min-width: 768px) {
+    .frame-type-news_newsliststicky .news .list-group {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .frame-type-news_newsliststicky .news .list-group {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Each list item becomes the card shell. */
+.frame-type-news_newsliststicky .news .list-group-item {
+    padding: 0;
+    border: 1px solid #d7e4f2;
+    border-radius: 1rem;
+    background-color: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 .5rem 1rem rgba(34, 46, 100, .06);
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+
+.frame-type-news_newsliststicky .news .list-group-item:hover,
+.frame-type-news_newsliststicky .news .list-group-item:focus-within {
+    transform: translateY(-2px);
+    box-shadow: 0 1rem 2rem rgba(34, 46, 100, .12);
+}
+
+/* Override the bootstrap row → vertical stack inside the card. */
+.frame-type-news_newsliststicky .news-list-item {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+}
+
+.frame-type-news_newsliststicky .news-list-item > [class^="col-"],
+.frame-type-news_newsliststicky .news-list-item > [class*=" col-"] {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+}
+
+/* Image — fixed 16:10 aspect, fills top of card. */
+.frame-type-news_newsliststicky .news-list-item > .col-md-5 {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+}
+
+.frame-type-news_newsliststicky .news-list-item > .col-md-5 a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.frame-type-news_newsliststicky .news-list-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .3s ease;
+}
+
+.frame-type-news_newsliststicky .news .list-group-item:hover img {
+    transform: scale(1.03);
+}
+
+/* Body padding. */
+.frame-type-news_newsliststicky .news-list-item > .col-md-7 {
+    padding: 1.5rem;
+}
+
+/* Date + category row — date left, badge right. Hide icons and the literal
+   "|" pipe via font-size:0 on the parent (children re-set their own size). */
+.frame-type-news_newsliststicky .articletype-0 .extra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .75rem;
+    margin: 0 0 .75rem;
+    font-size: 0;
+}
+
+.frame-type-news_newsliststicky .articletype-0 .extra > i {
+    display: none;
+}
+
+.frame-type-news_newsliststicky .articletype-0 .extra > time {
+    font-size: .875rem;
+    color: #5a5e85;
+}
+
+.frame-type-news_newsliststicky .articletype-0 .extra .news-list-tags {
+    margin: 0;
+    font-size: .875rem;
+}
+
+/* Category badge — pill with light bg and subtle border. */
+.frame-type-news_newsliststicky .articletype-0 .label.label-info {
+    display: inline-block;
+    margin: 0;
+    padding: .25rem .65rem;
+    border-radius: 999px;
+    background-color: #f5f8fc;
+    border: 1px solid #d7e4f2;
+    color: #2d2f5f;
+    font-size: .75rem;
+    font-weight: 600;
+    line-height: 1.4;
+    text-transform: none;
+}
+
+/* Title. */
+.frame-type-news_newsliststicky .articletype-0 h3 {
+    margin: 0 0 .75rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.frame-type-news_newsliststicky .articletype-0 h3 a {
+    color: var(--uni-primary);
+    text-decoration: none;
+}
+
+.frame-type-news_newsliststicky .articletype-0 h3 a:hover,
+.frame-type-news_newsliststicky .articletype-0 h3 a:focus-visible {
+    color: var(--uni-primary);
+    text-decoration: underline;
+}
+
+/* Teaser / description. */
+.frame-type-news_newsliststicky .articletype-0 .lead {
+    margin: 0 0 1.25rem;
+    color: #5a5e85;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.frame-type-news_newsliststicky .articletype-0 .lead p {
+    margin: 0;
+    text-align: left;
+}
+
+/* "Read more" — green pill button. */
+.frame-type-news_newsliststicky .btn-read-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: .75rem 1.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--uni-success);
+    background-color: var(--uni-success);
+    color: var(--uni-success-text);
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    box-shadow: 0 .75rem 1.5rem rgba(89, 209, 161, .22);
+    transition:
+        background-color .2s ease,
+        border-color     .2s ease,
+        color            .2s ease,
+        transform        .2s ease,
+        box-shadow       .2s ease;
+}
+
+.frame-type-news_newsliststicky .btn-read-more:hover,
+.frame-type-news_newsliststicky .btn-read-more:focus-visible {
+    background-color: var(--uni-success-hover);
+    border-color:     var(--uni-success-hover);
+    color:            var(--uni-success-text);
+    text-decoration:  none;
+    transform:        translateY(-1px);
+    box-shadow: 0 1rem 1.8rem rgba(89, 209, 161, .28);
+}
+
+.frame-type-news_newsliststicky .btn-read-more:active {
+    background-color: var(--uni-success-active);
+    border-color:     var(--uni-success-active);
+    color:            var(--uni-success-text);
+}
