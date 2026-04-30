@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Northbridge University</title>
+    <style>
+        :root {
+            --primary: #0a0050;
+            --primary-2: #1a2470;
+            --secondary: #2457b5;
+            --accent: #4aa8ff;
+            --accent-soft: #d9edff;
+            --text: #172033;
+            --text-soft: #55627a;
+            --bg: #f4f7fc;
+            --surface: #ffffff;
+            --border: #dbe4f1;
+            --success: #117a55;
+            --shadow: 0 18px 40px rgba(10, 0, 80, 0.12);
+            --radius-lg: 24px;
+            --radius-md: 18px;
+            --radius-sm: 12px;
+            --container: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(var(--container), calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 72px 0;
+        }
+
+        .section-heading {
+            max-width: 700px;
+            margin-bottom: 28px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 12px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--secondary);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        h1, h2, h3, h4 {
+            margin: 0 0 12px;
+            line-height: 1.15;
+        }
+
+        h1 {
+            font-size: clamp(2.4rem, 4vw, 4.6rem);
+            color: #fff;
+        }
+
+        h2 {
+            font-size: clamp(1.9rem, 3vw, 2.8rem);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+        }
+
+        p {
+            margin: 0 0 16px;
+            color: var(--text-soft);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 12px 22px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            font-weight: 700;
+            transition: 0.25s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: #fff;
+            box-shadow: 0 10px 24px rgba(36, 87, 181, 0.25);
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-link {
+            padding: 0;
+            min-height: auto;
+            border: 0;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow);
+        }
+
+        /* Header */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #ffffff;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            min-height: 88px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+
+        .brand-mark {
+            width: 54px;
+            height: 54px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #ffffff, #b8d6ff);
+            color: var(--primary);
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .brand-text strong {
+            display: block;
+            color: var(--text);
+            font-size: 1rem;
+            line-height: 1.1;
+        }
+
+        .brand-text span {
+            color: var(--text-soft);
+            font-size: 0.82rem;
+        }
+
+        .main-nav {
+            margin-left: auto;
+        }
+
+        .menu,
+        .submenu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .menu > li {
+            position: relative;
+        }
+
+        .menu > li > a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 16px;
+            color: #000000;
+            font-weight: 600;
+            border-radius: 999px;
+            transition: background 0.2s ease;
+        }
+
+        .menu > li:hover > a,
+        .menu > li:focus-within > a {
+            background: #f2f5fa;
+        }
+
+        .has-submenu > a::after {
+            content: "▾";
+            font-size: 0.72rem;
+            opacity: 0.8;
+        }
+
+        .submenu {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            min-width: 240px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: 0 24px 48px rgba(18, 27, 54, 0.16);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: 0.22s ease;
+            padding: 10px;
+        }
+
+        .submenu li {
+            position: relative;
+        }
+
+        .submenu a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 11px 14px;
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 0.96rem;
+        }
+
+        .submenu li:hover > a,
+        .submenu li:focus-within > a {
+            background: #eef4fd;
+            color: var(--secondary);
+        }
+
+        .submenu .submenu {
+            top: 0;
+            left: calc(100% + 10px);
+        }
+
+        .menu li:hover > .submenu,
+        .menu li:focus-within > .submenu,
+        .submenu li:hover > .submenu,
+        .submenu li:focus-within > .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background:
+                    radial-gradient(circle at top right, rgba(74, 168, 255, 0.18), transparent 28%),
+                    linear-gradient(135deg, rgba(10, 0, 80, 0.96), rgba(26, 36, 112, 0.94));
+            color: #fff;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                    linear-gradient(rgba(10, 0, 80, 0.45), rgba(10, 0, 80, 0.55)),
+                    url("images/a_wide_high_resolution_composite_photomontage_in.png") center center / cover no-repeat;
+            opacity: 1;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 36px;
+            align-items: center;
+            padding: 88px 0 72px;
+        }
+
+        .hero-copy p {
+            max-width: 640px;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .hero-panel {
+            padding: 28px;
+            border-radius: var(--radius-lg);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-panel h3 {
+            color: #fff;
+            margin-bottom: 14px;
+        }
+
+        .hero-panel ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero-panel li {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .hero-panel li:last-child {
+            border-bottom: 0;
+        }
+
+        .hero-meta {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            padding-bottom: 40px;
+        }
+
+        .hero-meta .meta-card {
+            padding: 20px 22px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+        }
+
+        .meta-card strong {
+            display: block;
+            font-size: 1.6rem;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .meta-card span {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.92rem;
+        }
+
+        /* Quick links */
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .quick-link {
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .quick-link::after {
+            content: "→";
+            position: absolute;
+            right: 22px;
+            bottom: 18px;
+            font-size: 1.3rem;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .quick-link:hover {
+            transform: translateY(-4px);
+            border-color: #b7cae7;
+        }
+
+        .quick-link h3 {
+            margin-bottom: 8px;
+        }
+
+        /* News and events */
+        .cards-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .news-card,
+        .event-card {
+            overflow: hidden;
+        }
+
+        .card-media {
+            height: 200px;
+            background:
+                    linear-gradient(135deg, rgba(10, 0, 80, 0.75), rgba(36, 87, 181, 0.45)),
+                    url("news-placeholder.jpg") center/cover no-repeat;
+        }
+
+        .card-body {
+            padding: 22px;
+        }
+
+        .meta-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: var(--text-soft);
+            font-size: 0.9rem;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: #eef4fd;
+            color: var(--secondary);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .event-card {
+            padding: 22px;
+            display: grid;
+            grid-template-columns: 78px 1fr;
+            gap: 18px;
+            align-items: start;
+        }
+
+        .event-date {
+            background: linear-gradient(180deg, var(--primary), var(--primary-2));
+            color: #fff;
+            border-radius: 20px;
+            text-align: center;
+            padding: 14px 10px;
+            box-shadow: 0 12px 28px rgba(10, 0, 80, 0.22);
+        }
+
+        .event-date strong {
+            display: block;
+            font-size: 1.6rem;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .event-date span {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* Stats */
+        .stats {
+            background: linear-gradient(135deg, #edf3fc, #f8fbff);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .stat-card {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .stat-card strong {
+            display: block;
+            font-size: clamp(2.2rem, 4vw, 3.6rem);
+            line-height: 1;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .stat-card span {
+            display: block;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .stat-card p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .about-media {
+            min-height: 420px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background:
+                    linear-gradient(135deg, rgba(10, 0, 80, 0.3), rgba(36, 87, 181, 0.16)),
+                    url("about-campus.jpg") center/cover no-repeat;
+            box-shadow: var(--shadow);
+        }
+
+        .about-copy {
+            padding: 10px 8px;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: linear-gradient(180deg, #0b0f2c, #08122c);
+            color: rgba(255, 255, 255, 0.85);
+            padding-top: 64px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr 1fr;
+            gap: 28px;
+            padding-bottom: 38px;
+        }
+
+        .footer-title {
+            color: #fff;
+            margin-bottom: 14px;
+            font-size: 1.1rem;
+        }
+
+        .footer-list,
+        .social-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-list li + li,
+        .social-list li + li {
+            margin-top: 10px;
+        }
+
+        .footer-list a,
+        .social-list a {
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+        .footer-list a:hover,
+        .social-list a:hover {
+            color: #fff;
+        }
+
+        .social-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .social-list a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.06);
+            width: fit-content;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 18px 0 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            color: rgba(255, 255, 255, 0.62);
+            font-size: 0.92rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .hero-inner,
+            .about-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-links-grid,
+            .cards-3,
+            .stats-grid,
+            .hero-meta {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header-inner {
+                flex-wrap: wrap;
+                align-items: flex-start;
+                padding: 16px 0;
+            }
+
+            .main-nav {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .menu {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .section {
+                padding: 56px 0;
+            }
+
+            .quick-links-grid,
+            .cards-3,
+            .stats-grid,
+            .hero-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .event-card {
+                grid-template-columns: 1fr;
+            }
+
+            .submenu,
+            .submenu .submenu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                min-width: 100%;
+                margin-top: 8px;
+                box-shadow: none;
+                display: none;
+            }
+
+            .menu li:hover > .submenu,
+            .menu li:focus-within > .submenu,
+            .submenu li:hover > .submenu,
+            .submenu li:focus-within > .submenu {
+                display: block;
+            }
+
+            .menu {
+                display: grid;
+                gap: 8px;
+            }
+
+            .menu > li > a {
+                justify-content: space-between;
+                background: #f7f9fc;
+                color: #000000;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <a href="#" class="brand" aria-label="Northbridge University home">
+            <span class="brand-mark">NU</span>
+            <span class="brand-text">
+                    <strong>Northbridge University</strong>
+                    <span>Knowledge. Research. Community.</span>
+                </span>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+            <ul class="menu">
+                <li><a href="#">Home</a></li>
+
+                <li class="has-submenu">
+                    <a href="#">About</a>
+                    <ul class="submenu">
+                        <li><a href="#">Overview</a></li>
+                        <li><a href="#">Leadership</a></li>
+                        <li class="has-submenu">
+                            <a href="#">University Life</a>
+                            <ul class="submenu">
+                                <li><a href="#">Campus Tour</a></li>
+                                <li><a href="#">Student Support</a></li>
+                                <li class="has-submenu">
+                                    <a href="#">Facilities</a>
+                                    <ul class="submenu">
+                                        <li><a href="#">Library</a></li>
+                                        <li><a href="#">Residences</a></li>
+                                        <li><a href="#">Sports Center</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">History</a></li>
+                    </ul>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="#">Admissions</a>
+                    <ul class="submenu">
+                        <li><a href="#">Apply Now</a></li>
+                        <li><a href="#">Tuition & Fees</a></li>
+                        <li class="has-submenu">
+                            <a href="#">Programs</a>
+                            <ul class="submenu">
+                                <li><a href="#">Undergraduate</a></li>
+                                <li><a href="#">Graduate</a></li>
+                                <li><a href="#">Doctoral</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">International Students</a></li>
+                    </ul>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="#">Academics</a>
+                    <ul class="submenu">
+                        <li><a href="#">Faculties</a></li>
+                        <li><a href="#">Research</a></li>
+                        <li><a href="#">Academic Calendar</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">News</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="container hero-inner">
+            <div class="hero-copy">
+                <span class="eyebrow">Admissions Open 2026</span>
+                <h1>Build your future with a university shaped by research, purpose, and opportunity.</h1>
+                <p>
+                    Northbridge University offers student-centered learning, international perspectives,
+                    and a dynamic academic environment designed to prepare graduates for real-world impact.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#" class="btn btn-primary">Apply now</a>
+                    <a href="#" class="btn btn-secondary">Explore programs</a>
+                </div>
+            </div>
+
+            <aside class="hero-panel" aria-label="Key dates">
+                <h3>Important dates</h3>
+                <ul>
+                    <li>
+                        <span>Application deadline</span>
+                        <strong>May 31</strong>
+                    </li>
+                    <li>
+                        <span>Orientation week</span>
+                        <strong>Sep 09–13</strong>
+                    </li>
+                    <li>
+                        <span>Fall semester starts</span>
+                        <strong>Sep 16</strong>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+
+        <div class="container hero-meta">
+            <div class="meta-card">
+                <strong>120+</strong>
+                <span>degree and certificate options</span>
+            </div>
+            <div class="meta-card">
+                <strong>80%</strong>
+                <span>students engaged in internships or applied projects</span>
+            </div>
+            <div class="meta-card">
+                <strong>40+</strong>
+                <span>international academic partnerships</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container about-grid">
+            <div class="about-media" aria-hidden="true" style="background:url('images/about_university.png') center/cover no-repeat;"></div>
+
+            <div class="about-copy">
+                <span class="eyebrow">About Northbridge</span>
+                <h2>A university rooted in academic excellence and civic impact</h2>
+                <p>
+                    Northbridge University brings together rigorous teaching, community engagement,
+                    and forward-looking research in a supportive and internationally connected environment.
+                    Students learn from experienced faculty, participate in applied projects, and gain
+                    the skills needed to contribute across industries and public life.
+                </p>
+                <p>
+                    With a strong campus culture and a commitment to innovation, the university
+                    encourages discovery, collaboration, and long-term personal growth.
+                </p>
+                <a href="#" class="btn btn-link">Read more about the university</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Quick links</span>
+                <h2>Start with the information you need most</h2>
+                <p>Fast access to admissions, study options, key academic dates, and university contacts.</p>
+            </div>
+
+            <div class="quick-links-grid">
+                <a href="#" class="card quick-link">
+                    <h3>Apply</h3>
+                    <p>Submit your application and review entry requirements.</p>
+                </a>
+
+                <a href="#" class="card quick-link">
+                    <h3>Programs</h3>
+                    <p>Browse undergraduate, graduate, and doctoral study paths.</p>
+                </a>
+
+                <a href="#" class="card quick-link">
+                    <h3>Calendar</h3>
+                    <p>Check term dates, deadlines, examination periods, and breaks.</p>
+                </a>
+
+                <a href="#" class="card quick-link">
+                    <h3>Contact</h3>
+                    <p>Reach admissions, faculties, student support, and administration.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Latest news</span>
+                <h2>Recent updates from campus</h2>
+                <p>Highlights from teaching, student life, research activity, and institutional announcements.</p>
+            </div>
+
+            <div class="cards-3">
+                <article class="card news-card">
+                    <div class="card-media" style="background: url('images/news_1.png') center/cover no-repeat;"></div>
+                    <div class="card-body">
+                        <div class="meta-row">
+                            <span>April 18, 2026</span>
+                            <span class="tag">Research</span>
+                        </div>
+                        <h3>Engineering faculty opens new sustainable materials laboratory</h3>
+                        <p>A new interdisciplinary space will support applied research partnerships and student innovation projects.</p>
+                        <a href="#" class="btn btn-link">Read more</a>
+                    </div>
+                </article>
+
+                <article class="card news-card">
+                    <div class="card-media" style="background: url('images/news_2.png') center/cover no-repeat;"></div>
+                    <div class="card-body">
+                        <div class="meta-row">
+                            <span>April 12, 2026</span>
+                            <span class="tag">Students</span>
+                        </div>
+                        <h3>Scholarship applications launched for first-year international students</h3>
+                        <p>Northbridge expands support opportunities for academically strong applicants from abroad.</p>
+                        <a href="#" class="btn btn-link">Read more</a>
+                    </div>
+                </article>
+
+                <article class="card news-card">
+                    <div class="card-media" style="background: url('images/news_3.png') center/cover no-repeat;"></div>
+                    <div class="card-body">
+                        <div class="meta-row">
+                            <span>April 05, 2026</span>
+                            <span class="tag">Campus</span>
+                        </div>
+                        <h3>University launches digital student services portal for faster requests</h3>
+                        <p>The new platform simplifies enrolment letters, academic documents, and service tracking.</p>
+                        <a href="#" class="btn btn-link">Read more</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Upcoming events</span>
+                <h2>What’s happening next</h2>
+                <p>Three featured events for prospective students, researchers, and the university community.</p>
+            </div>
+
+            <div class="cards-3">
+                <article class="card event-card">
+                    <div class="event-date">
+                        <strong>24</strong>
+                        <span>Apr</span>
+                    </div>
+                    <div>
+                        <div class="meta-row">
+                            <span class="tag">Open day</span>
+                            <span>10:00 AM · Main Campus</span>
+                        </div>
+                        <h3>Undergraduate Open Day</h3>
+                        <p>Meet faculty members, tour the campus, and learn about admissions and student life.</p>
+                        <a href="#" class="btn btn-link">View details</a>
+                    </div>
+                </article>
+
+                <article class="card event-card">
+                    <div class="event-date">
+                        <strong>02</strong>
+                        <span>May</span>
+                    </div>
+                    <div>
+                        <div class="meta-row">
+                            <span class="tag">Lecture</span>
+                            <span>4:00 PM · Innovation Hall</span>
+                        </div>
+                        <h3>Public lecture: AI and public policy</h3>
+                        <p>An interdisciplinary discussion on technology governance, ethics, and public impact.</p>
+                        <a href="#" class="btn btn-link">View details</a>
+                    </div>
+                </article>
+
+                <article class="card event-card">
+                    <div class="event-date">
+                        <strong>10</strong>
+                        <span>May</span>
+                    </div>
+                    <div>
+                        <div class="meta-row">
+                            <span class="tag">Research</span>
+                            <span>1:00 PM · Science Center</span>
+                        </div>
+                        <h3>Graduate research showcase</h3>
+                        <p>Doctoral and master’s students present projects across engineering, education, and social sciences.</p>
+                        <a href="#" class="btn btn-link">View details</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section stats" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Key statistics</span>
+                <h2>Northbridge at a glance</h2>
+                <p>A snapshot of the scale, academic breadth, and history of the university.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="card stat-card">
+                    <strong>18,500</strong>
+                    <span>Students</span>
+                    <p>Across undergraduate, graduate, and professional study programs.</p>
+                </div>
+
+                <div class="card stat-card">
+                    <strong>12</strong>
+                    <span>Faculties</span>
+                    <p>From engineering and medicine to arts, law, and business.</p>
+                </div>
+
+                <div class="card stat-card">
+                    <strong>74</strong>
+                    <span>Years since founding</span>
+                    <p>Advancing education, research, and public engagement since 1952.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div>
+            <h3 class="footer-title">Address & contact</h3>
+            <p>
+                125 University Avenue<br />
+                Northbridge, NB 20450<br />
+                Romania
+            </p>
+            <p>
+                Phone: +40 264 555 100<br />
+                Admissions: +40 264 555 121
+            </p>
+        </div>
+
+        <div>
+            <h3 class="footer-title">Social media</h3>
+            <ul class="social-list">
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">YouTube</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="footer-title">Quick navigation</h3>
+            <ul class="footer-list">
+                <li><a href="#">Apply</a></li>
+                <li><a href="#">Programs</a></li>
+                <li><a href="#">Academic Calendar</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container footer-bottom">
+        <span>© 2026 Northbridge University. All rights reserved.</span>
+        <span>Privacy Policy · Accessibility · Terms</span>
+    </div>
+</footer>
+</body>
+</html>
