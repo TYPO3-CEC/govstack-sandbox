@@ -480,6 +480,51 @@
 
 
 /* ==========================================================================
+   KPI / "at a glance" variant of card_group — same DOM as the Quick links
+   section but each card has an extra <h3 class="card-subtitle">. Detected
+   via :has(.card-subtitle). No tinted bg, no stretched link, big number
+   on top, centered content.
+   ========================================================================== */
+
+/* Hide the gray-blue ::before background for KPI sections. */
+.frame-type-card_group:has(.card-subtitle)::before {
+    display: none;
+}
+
+/* Center-align the entire card body. */
+.frame-type-card_group:has(.card-subtitle) .card .card-body {
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+/* Big KPI number (.card-title is the number for these cards).
+   Explicit text-align: center to override bk2k's `.card-title { text-align: left }`. */
+.frame-type-card_group:has(.card-subtitle) .card .card-body .card-title {
+    margin: 0 0 .75rem;
+    color: var(--uni-primary);
+    font-size: clamp(2.25rem, 3vw, 3rem);
+    font-weight: 800;
+    line-height: 1;
+    text-align: center;
+}
+
+/* Subtitle (Students / Faculties / Years since founding). */
+.frame-type-card_group:has(.card-subtitle) .card .card-body .card-subtitle {
+    margin: 0 0 .75rem;
+    color: var(--uni-primary);
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: center;
+}
+
+/* Description — centered, no left-align inheritance from quick links. */
+.frame-type-card_group:has(.card-subtitle) .card .card-body p {
+    text-align: center;
+}
+
+
+/* ==========================================================================
    News list — georgringer/news rendered as vertical cards (image top,
    meta + title + teaser + green CTA). 3 columns on desktop.
    ========================================================================== */
@@ -511,32 +556,31 @@
     line-height: 1.5;
 }
 
-/* Grid of news items. */
-.frame-type-news_newsliststicky .news .list-group {
+/* Grid of news items — target .news-list-view (the wrapping ul/.list-group
+   was removed by the new template layout, so we grid the parent div). */
+.frame-type-news_newsliststicky .news-list-view {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
     padding: 0;
     margin: 0;
-    border: 0;
     list-style: none;
-    border-radius: 0;
 }
 
 @media (min-width: 768px) {
-    .frame-type-news_newsliststicky .news .list-group {
+    .frame-type-news_newsliststicky .news-list-view {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (min-width: 992px) {
-    .frame-type-news_newsliststicky .news .list-group {
+    .frame-type-news_newsliststicky .news-list-view {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
 /* Each list item becomes the card shell. */
-.frame-type-news_newsliststicky .news .list-group-item {
+.frame-type-news_newsliststicky .list-group-item {
     padding: 0;
     border: 1px solid #d7e4f2;
     border-radius: 1rem;
@@ -546,8 +590,8 @@
     transition: box-shadow .2s ease, transform .2s ease;
 }
 
-.frame-type-news_newsliststicky .news .list-group-item:hover,
-.frame-type-news_newsliststicky .news .list-group-item:focus-within {
+.frame-type-news_newsliststicky .list-group-item:hover,
+.frame-type-news_newsliststicky .list-group-item:focus-within {
     transform: translateY(-2px);
     box-shadow: 0 1rem 2rem rgba(34, 46, 100, .12);
 }
@@ -589,7 +633,7 @@
     transition: transform .3s ease;
 }
 
-.frame-type-news_newsliststicky .news .list-group-item:hover img {
+.frame-type-news_newsliststicky .list-group-item:hover img {
     transform: scale(1.03);
 }
 
@@ -708,4 +752,205 @@
     background-color: var(--uni-success-active);
     border-color:     var(--uni-success-active);
     color:            var(--uni-success-text);
+}
+
+
+/* ==========================================================================
+   Events list — same georgringer/news partial as the news section, but the
+   items have NO image col (.col-md-5). Differentiated via :has() and styled
+   as horizontal cards: navy gradient date tile on the left, content right.
+   ========================================================================== */
+
+/* Tinted full-width section background for the events frame only.
+   Detection: presence of the .events-list class on .news-list-view, added
+   automatically by georgringer/news when templateLayout=10 is selected. */
+.frame-type-news_newsliststicky:has(.events-list) {
+    position: relative;
+    isolation: isolate;
+}
+
+.frame-type-news_newsliststicky:has(.events-list)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left:  calc(50% - 50vw);
+    right: calc(50% - 50vw);
+    background-color: #f5f8fc;
+    z-index: -1;
+}
+
+/* Per-card horizontal layout — date tile left, content right. */
+.frame-type-news_newsliststicky .events-list .list-group-item {
+    position: relative;
+    padding: 1.5rem 1.5rem 1.5rem 7rem;
+}
+
+.frame-type-news_newsliststicky .events-list .news-list-item {
+    display: block;
+    margin: 0;
+}
+
+/* Reorder content: meta row (.extra) above the title (h3). */
+.frame-type-news_newsliststicky .events-list .articletype-0 {
+    display: flex;
+    flex-direction: column;
+}
+
+.frame-type-news_newsliststicky .events-list .articletype-0 .extra        { order: 1; }
+.frame-type-news_newsliststicky .events-list .articletype-0 h3            { order: 2; }
+.frame-type-news_newsliststicky .events-list .articletype-0 .lead         { order: 3; }
+.frame-type-news_newsliststicky .events-list .articletype-0 .btn-read-more { order: 4; align-self: flex-start; }
+
+/* Date tile — navy gradient, big day on top + uppercase month underneath.
+   The <time> contains "DD Mon" (e.g. "10 May"); word-spacing forces the
+   space to break the line, and ::first-line scales the day up.
+   Selector qualified with .articletype-0 .extra so it outweighs the
+   generic news color rule (#5a5e85). */
+.frame-type-news_newsliststicky .events-list .articletype-0 .extra time {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    display: block;
+    width: 4.5rem;
+    min-height: 4.5rem;
+    padding: .55rem .25rem;
+    border-radius: .75rem;
+    background: linear-gradient(180deg, var(--uni-primary), #456fca);
+    color: #ffffff;
+    font-size: .7rem;
+    font-weight: 600;
+    line-height: 1.05;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    word-spacing: 100vw;
+    overflow: hidden;
+}
+
+.frame-type-news_newsliststicky .events-list .articletype-0 .extra time::first-line {
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: 0;
+}
+
+/* Meta row — pill badge + time text + location. Add a "·" separator before
+   the location span. */
+.frame-type-news_newsliststicky .events-list .extra {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin: 0 0 .35rem;
+    color: #5a5e85;
+    font-size: .875rem;
+    line-height: 1.4;
+}
+
+.frame-type-news_newsliststicky .events-list .extra .news-list-tags {
+    margin: 0;
+}
+
+.frame-type-news_newsliststicky .events-list .extra .location {
+    margin: 0;
+}
+
+.frame-type-news_newsliststicky .events-list .extra .location::before {
+    content: "·";
+    margin-right: .35rem;
+    color: #9aa1c0;
+}
+
+/* Title + body — tighter for the compact card. */
+.frame-type-news_newsliststicky .events-list .articletype-0 h3 {
+    margin: 0 0 .5rem;
+    font-size: 1.125rem;
+}
+
+.frame-type-news_newsliststicky .events-list .articletype-0 .lead {
+    margin: 0 0 1rem;
+    font-size: .95rem;
+}
+
+
+/* ==========================================================================
+   Footer — light gray background, navy headings & body, scoped to the
+   left "Address & contact" column per the reference image.
+   ========================================================================== */
+
+.bp-page-footer {
+    background-color: #E1E1E1;
+    border-top: 1px solid #cfcfcf;
+    color: #2d2f5f;
+}
+
+/* All three footer columns: heading + body styling. */
+.bp-page-footer .footer-section-content-column .frame-header {
+    margin-bottom: 1rem;
+}
+
+.bp-page-footer .footer-section-content-column .element-header {
+    margin: 0 0 .25rem;
+    color: var(--uni-primary);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.bp-page-footer .footer-section-content-column p {
+    margin: 0 0 1rem;
+    color: #2d2f5f;
+    font-size: .9375rem;
+    line-height: 1.55;
+}
+
+.bp-page-footer .footer-section-content-column p:last-child {
+    margin-bottom: 0;
+}
+
+/* Social media icons inline on one row. */
+.bp-page-footer .footer-section-content-column .sociallinks-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.bp-page-footer .footer-section-content-column .sociallinks-item {
+    width: auto;
+    margin: 0;
+}
+
+/* Hide the duplicate social links block that appears in the left column. */
+.bp-page-footer .footer-section-content-column-left .footer-sociallinks {
+    display: none;
+}
+
+/* Pad the left column so its content aligns with the page container above. */
+.bp-page-footer .footer-section-content-column-left {
+    padding-left: 1.5rem;
+}
+
+/* Left-align middle (social) and right (navigation) columns. */
+.bp-page-footer .footer-section-content-column-middle,
+.bp-page-footer .footer-section-content-column-right {
+    text-align: left;
+}
+
+.bp-page-footer .footer-section-content-column-middle .sociallinks-list {
+    justify-content: flex-start;
+}
+
+.bp-page-footer .footer-section-content-column-right ul {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.bp-page-footer .footer-section-content-column-right ul li {
+    text-align: left;
 }
