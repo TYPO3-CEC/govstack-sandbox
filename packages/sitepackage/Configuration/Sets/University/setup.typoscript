@@ -1,1 +1,2 @@
 @import './TypoScript/Setup/Page'
+@import './TypoScript/Setup/Extensions'

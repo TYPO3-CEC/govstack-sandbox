@@ -16,6 +16,10 @@
 				<source>Search</source>
 			</trans-unit>
 
+			<trans-unit id="news.tags.reset">
+				<source>Show all news</source>
+			</trans-unit>
+
         </body>
     </file>
 </xliff>

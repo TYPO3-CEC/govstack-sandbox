@@ -1,0 +1,10 @@
+plugin.tx_news {
+    settings {
+        list {
+            paginate {
+                insertAbove = 0
+                insertBelow = 1
+            }
+        }
+    }
+}
