@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b6d040d68e52116974d2b5563f8776f",
+    "content-hash": "2c1a1ebf3fb866e304bba4909df82426",
     "packages": [
         {
             "name": "GovStack/sitepackage",
-            "version": "dev-main",
+            "version": "dev-feature/university",
             "dist": {
                 "type": "path",
                 "url": "./packages/sitepackage",
-                "reference": "bd591ddf733f5240a69d86eb00c2958060d5c1a8"
+                "reference": "b7656c477cf45a975d471103d39ac721f0270f3d"
             },
             "require": {
                 "typo3/cms-core": "^13.4",
@@ -1021,6 +1021,81 @@
                 "source": "https://github.com/firebase/php-jwt/tree/v6.11.1"
             },
             "time": "2025-04-09T20:32:01+00:00"
+        },
+        {
+            "name": "georgringer/eventnews",
+            "version": "7.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/georgringer/eventnews.git",
+                "reference": "d8fa55f23da10689d55a33a15b5488aebbed4abf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/georgringer/eventnews/zipball/d8fa55f23da10689d55a33a15b5488aebbed4abf",
+                "reference": "d8fa55f23da10689d55a33a15b5488aebbed4abf",
+                "shasum": ""
+            },
+            "require": {
+                "georgringer/news": "^12.2 || ^13.0",
+                "typo3/cms-core": "^12 || ^13"
+            },
+            "type": "typo3-cms-extension",
+            "extra": {
+                "typo3/cms": {
+                    "web-dir": ".Build/Web",
+                    "extension-key": "eventnews",
+                    "cms-package-dir": "{$vendor-dir}/typo3/cms"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GeorgRinger\\Eventnews\\": "Classes"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Georg Ringer",
+                    "homepage": "https://ringer.it",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Extend EXT:news with event and calendar functionality",
+            "homepage": "https://ringer.it",
+            "keywords": [
+                "event",
+                "extension",
+                "news",
+                "typo3"
+            ],
+            "support": {
+                "docs": "https://docs.typo3.org/p/georgringer/eventnews/main/en-us/",
+                "issues": "https://github.com/georgringer/eventnews/issues",
+                "source": "https://github.com/georgringer/eventnews"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/GeorgRinger/10",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.amazon.de/hz/wishlist/ls/8F573K08TSDG",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/georgringer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/georgringer",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2025-11-19T19:11:01+00:00"
         },
         {
             "name": "georgringer/news",
@@ -8983,5 +9058,5 @@
     "platform-overrides": {
         "php": "8.3.0"
     },
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }

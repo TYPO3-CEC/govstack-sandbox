@@ -32,8 +32,8 @@
 	                </span>
                 </f:if>
                 <f:format.date format="g:i A">{newsItem.datetime}</f:format.date>
-                <f:if condition="{newsItem.notes}">
-                    <span class="location">{newsItem.notes}</span>
+                <f:if condition="{newsItem.locationSimple}">
+                    <span class="location">{newsItem.locationSimple}</span>
                 </f:if>
             </div>
 

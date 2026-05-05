@@ -81,6 +81,9 @@
 			</f:then>
 			<f:else>
 				<f:render section="headline" arguments="{_all}" />
+                <div class="news-text-wrap" itemprop="articleBody">
+                    <f:format.html>{newsItem.bodytext}</f:format.html>
+                </div>
 				<f:render section="inner-content" arguments="{_all}" />
 			</f:else>
 		</f:if>

@@ -16,6 +16,7 @@
 	},
 	"require": {
 		"bk2k/bootstrap-package": "^15.0",
+		"georgringer/eventnews": "^7.1",
 		"georgringer/news": "^12.2",
 		"govstack/sitepackage": "@dev",
 		"helhum/dotenv-connector": "^3.1",

@@ -794,12 +794,12 @@ body {
 /* Tinted full-width section background for the events frame only.
    Detection: presence of the .events-list class on .news-list-view, added
    automatically by georgringer/news when templateLayout=10 is selected. */
-.frame-type-news_newsliststicky:has(.events-list) {
+:is(.frame-type-news_newsliststicky, .frame-type-news_pi1):has(.events-list) {
     position: relative;
     isolation: isolate;
 }
 
-.frame-type-news_newsliststicky:has(.events-list)::before {
+:is(.frame-type-news_newsliststicky, .frame-type-news_pi1):has(.events-list)::before {
     content: "";
     position: absolute;
     top: 0;
@@ -811,33 +811,33 @@ body {
 }
 
 /* Per-card horizontal layout — date tile left, content right. */
-.frame-type-news_newsliststicky .events-list .list-group-item {
+:is(.frame-type-news_newsliststicky, .frame-type-news_pi1) .events-list .list-group-item {
     position: relative;
     padding: 1.5rem 1.5rem 1.5rem 7rem;
 }
 
-.frame-type-news_newsliststicky .events-list .news-list-item {
+:is(.frame-type-news_newsliststicky, .frame-type-news_pi1) .events-list .news-list-item {
     display: block;
     margin: 0;
 }
 
 /* Reorder content: meta row (.extra) above the title (h3). */
-.frame-type-news_newsliststicky .events-list .articletype-0 {
+:is(.frame-type-news_newsliststicky, .frame-type-news_pi1) .events-list .articletype-0 {
     display: flex;
     flex-direction: column;
 }
 
-.frame-type-news_newsliststicky .events-list .articletype-0 .extra        { order: 1; }
-.frame-type-news_newsliststicky .events-list .articletype-0 h3            { order: 2; }
-.frame-type-news_newsliststicky .events-list .articletype-0 .lead         { order: 3; }
-.frame-type-news_newsliststicky .events-list .articletype-0 .btn-read-more { order: 4; align-self: flex-start; }
+:is(.frame-type-news_newsliststicky, .frame-type-news_pi1) .events-list .articletype-0 .extra        { order: 1; }
+:is(.frame-type-news_newsliststicky, .frame-type-news_pi1) .events-list .articletype-0 h3            { order: 2; }
+:is(.frame-type-news_newsliststicky, .frame-type-news_pi1) .events-list .articletype-0 .lead         { order: 3; }
+:is(.frame-type-news_newsliststicky, .frame-type-news_pi1) .events-list .articletype-0 .btn-read-more { order: 4; align-self: flex-start; }
 
 /* Date tile — navy gradient, big day on top + uppercase month underneath.
    The <time> contains "DD Mon" (e.g. "10 May"); word-spacing forces the
    space to break the line, and ::first-line scales the day up.
    Selector qualified with .articletype-0 .extra so it outweighs the
    generic news color rule (#5a5e85). */
-.frame-type-news_newsliststicky .events-list .articletype-0 .extra time {
+:is(.frame-type-news_newsliststicky, .frame-type-news_pi1) .events-list .articletype-0 .extra time {
     position: absolute;
     top: 1.5rem;
     left: 1.5rem;
@@ -858,7 +858,7 @@ body {
     overflow: hidden;
 }
 
-.frame-type-news_newsliststicky .events-list .articletype-0 .extra time::first-line {
+:is(.frame-type-news_newsliststicky, .frame-type-news_pi1) .events-list .articletype-0 .extra time::first-line {
     font-size: 1.75rem;
     font-weight: 800;
     line-height: 1.05;
@@ -867,7 +867,7 @@ body {
 
 /* Meta row — pill badge + time text + location. Add a "·" separator before
    the location span. */
-.frame-type-news_newsliststicky .events-list .extra {
+:is(.frame-type-news_newsliststicky, .frame-type-news_pi1) .events-list .extra {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -878,27 +878,27 @@ body {
     line-height: 1.4;
 }
 
-.frame-type-news_newsliststicky .events-list .extra .news-list-tags {
+:is(.frame-type-news_newsliststicky, .frame-type-news_pi1) .events-list .extra .news-list-tags {
     margin: 0;
 }
 
-.frame-type-news_newsliststicky .events-list .extra .location {
+:is(.frame-type-news_newsliststicky, .frame-type-news_pi1) .events-list .extra .location {
     margin: 0;
 }
 
-.frame-type-news_newsliststicky .events-list .extra .location::before {
+:is(.frame-type-news_newsliststicky, .frame-type-news_pi1) .events-list .extra .location::before {
     content: "·";
     margin-right: .35rem;
     color: #9aa1c0;
 }
 
 /* Title + body — tighter for the compact card. */
-.frame-type-news_newsliststicky .events-list .articletype-0 h3 {
+:is(.frame-type-news_newsliststicky, .frame-type-news_pi1) .events-list .articletype-0 h3 {
     margin: 0 0 .5rem;
     font-size: 1.125rem;
 }
 
-.frame-type-news_newsliststicky .events-list .articletype-0 .lead {
+:is(.frame-type-news_newsliststicky, .frame-type-news_pi1) .events-list .articletype-0 .lead {
     margin: 0 0 1rem;
     font-size: .95rem;
 }
@@ -1056,6 +1056,13 @@ body {
     }
 }
 
+/* Events list — 3 columns at desktop instead of 2. */
+@media (min-width: 992px) {
+    .frame-type-news_pi1 .news-list-view.events-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 /* Each card. */
 .frame-type-news_pi1 .list-group-item {
     padding: 0;
@@ -1120,8 +1127,9 @@ body {
     padding: 1.5rem;
 }
 
-/* Cards without image — reserve the same vertical space. */
-.frame-type-news_pi1 .list-group-item:not(:has(.col-md-5)) .news-list-item::before {
+/* Cards without image — reserve the same vertical space.
+   Excluded for events-list (no image area at all on events). */
+.frame-type-news_pi1 .news-list-view:not(.events-list) .list-group-item:not(:has(.col-md-5)) .news-list-item::before {
     content: "";
     display: block;
     width: 100%;
@@ -1129,13 +1137,13 @@ body {
     background: linear-gradient(180deg, var(--uni-primary), #456fca);
 }
 
-.frame-type-news_pi1 .list-group-item:not(:has(.col-md-5)) > .news-list-item > .articletype-0 {
+.frame-type-news_pi1 .news-list-view:not(.events-list) .list-group-item:not(:has(.col-md-5)) > .news-list-item > .articletype-0 {
     width: 100%;
     padding: 1.5rem;
 }
 
 /* Date + category row. */
-.frame-type-news_pi1 .articletype-0 .extra {
+.frame-type-news_pi1 .news-list-view:not(.events-list) .articletype-0 .extra {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1144,16 +1152,16 @@ body {
     font-size: 0;
 }
 
-.frame-type-news_pi1 .articletype-0 .extra > i {
+.frame-type-news_pi1 .news-list-view:not(.events-list) .articletype-0 .extra > i {
     display: none;
 }
 
-.frame-type-news_pi1 .articletype-0 .extra > time {
+.frame-type-news_pi1 .news-list-view:not(.events-list) .articletype-0 .extra > time {
     font-size: .875rem;
     color: #5a5e85;
 }
 
-.frame-type-news_pi1 .articletype-0 .extra .news-list-tags {
+.frame-type-news_pi1 .news-list-view:not(.events-list) .articletype-0 .extra .news-list-tags {
     margin: 0;
     font-size: .875rem;
 }
@@ -1551,3 +1559,5 @@ body {
 .frame-type-indexedsearch_pi2 article.card .card-body > ul.list-inline {
     display: none;
 }
+
+

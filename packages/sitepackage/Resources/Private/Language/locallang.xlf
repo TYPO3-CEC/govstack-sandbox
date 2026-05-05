@@ -17,7 +17,7 @@
 			</trans-unit>
 
 			<trans-unit id="news.tags.reset">
-				<source>Show all news</source>
+				<source>Show all</source>
 			</trans-unit>
 
         </body>

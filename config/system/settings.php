@@ -65,6 +65,9 @@ return [
             'sleepAfterFinish' => '10',
             'sleepTime' => '1000',
         ],
+        'eventnews' => [
+            'overrideAdministrationModuleLabel' => '0',
+        ],
         'extensionmanager' => [
             'automaticInstallation' => '1',
             'offlineMode' => '0',
