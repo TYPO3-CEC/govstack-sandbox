@@ -26,7 +26,6 @@
         </f:if>
         <f:if condition="{result.count} > 0">
             <f:then>
-                <f:render partial="Pagination" arguments="{pagination: result.pagination, searchParams: searchParams}" />
                 <f:if condition="{result.affectedSections}">
                     <div class="list-group">
                         <f:for each="{result.affectedSections}" as="sectionData" key="sectionId">
@@ -60,7 +59,9 @@
                         </f:else>
                     </f:if>
                 </f:for>
-                <f:render partial="Pagination" arguments="{pagination: result.pagination, searchParams: searchParams}" />
+                <f:if condition="{result.pagination.allPageNumbers -> f:count()} > 1">
+                    <f:render partial="Pagination" arguments="{pagination: result.pagination, searchParams: searchParams}" />
+                </f:if>
             </f:then>
             <f:else>
                 <div class="alert alert-info">

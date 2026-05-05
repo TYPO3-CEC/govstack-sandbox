@@ -13,6 +13,18 @@
     --uni-success-text:   #00319d;
     --uni-text:           #2d2f5f;
     --uni-border:         #d7e4f2;
+
+    /* Site-wide body text color — same muted navy as the textpic paragraphs.
+       Overrides Bootstrap's default `--bs-body-color: #212121`, so every
+       element that inherits color picks up #5a5e85. Font family stays the
+       Inter/sans-serif from `--bs-body-font-family`. */
+    --bs-body-color:     #5a5e85;
+    --bs-body-color-rgb: 90, 94, 133;
+}
+
+body {
+    color: #5a5e85;
+    font-family: var(--bs-body-font-family);
 }
 
 .carousel.carousel-small.carousel-fade {
@@ -1464,4 +1476,78 @@
 .frame-layout-embedded.frame-space-after-none:not(.frame-option-ruler-after) + .frame-size-default.frame-background-none.frame-space-before-none:not(.frame-option-ruler-before):not(.frame-has-backgroundimage),
 .frame-size-default.frame-background-none.frame-space-after-none:not(.frame-option-ruler-after):not(.frame-has-backgroundimage) + .frame-layout-embedded.frame-space-before-none:not(.frame-option-ruler-before) {
     --frame-outer-spacing-before: 0;
+}
+
+
+/* ==========================================================================
+   Indexed Search pagination (.tx-indexedsearch-browsebox) — same circle/pill
+   look as the news pagination. Active page is wrapped in <strong>.
+   The link text "Page 1" is replaced via CSS counter so only "1" shows.
+   ========================================================================== */
+
+.tx-indexedsearch-browsebox {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: tx-page-counter;
+}
+
+.tx-indexedsearch-browsebox li {
+    counter-increment: tx-page-counter;
+    display: inline-flex;
+    margin: 0;
+}
+
+.tx-indexedsearch-browsebox li > strong {
+    display: inline-flex;
+    font-weight: inherit;
+}
+
+.tx-indexedsearch-browsebox li > a,
+.tx-indexedsearch-browsebox li > strong > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding: 0 .75rem;
+    border: 1px solid #d7e4f2;
+    border-radius: 999px;
+    background-color: #ffffff;
+    color: var(--uni-primary);
+    font-size: 0;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.tx-indexedsearch-browsebox li > a::before,
+.tx-indexedsearch-browsebox li > strong > a::before {
+    content: counter(tx-page-counter);
+    font-size: .9375rem;
+}
+
+.tx-indexedsearch-browsebox li > a:hover,
+.tx-indexedsearch-browsebox li > a:focus-visible {
+    background-color: #f5f8fc;
+    border-color: var(--uni-primary);
+    color: var(--uni-primary);
+}
+
+/* Active page — <li> wraps the link in <strong>. */
+.tx-indexedsearch-browsebox li > strong > a {
+    background-color: var(--uni-primary);
+    border-color: var(--uni-primary);
+    color: #ffffff;
+}
+
+/* Hide the per-result metadata footer (Size / Created / Modified / Path). */
+.frame-type-indexedsearch_pi2 article.card .card-body > ul.list-inline {
+    display: none;
 }

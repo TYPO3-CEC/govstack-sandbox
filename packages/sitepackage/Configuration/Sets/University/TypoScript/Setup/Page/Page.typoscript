@@ -2,4 +2,7 @@ page {
   includeCSS {
     theme-specific = EXT:sitepackage/Resources/Public/University/Scss/theme.scss
   }
+  config {
+    index_enable = 1
+  }
 }
