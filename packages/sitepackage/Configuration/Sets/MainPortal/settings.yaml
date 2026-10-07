@@ -1,6 +1,6 @@
 page:
   logo:
-    file: 'EXT:sitepackage/Resources/Public/Institution/Images/Logo/logo_dtec.svg'
+    file: 'EXT:sitepackage/Resources/Public/MainPortal/Images/Logo/logo_dtec.svg'
     height: 80
     linktitle: 'LLL:EXT:sitepackage/Resources/Private/Language/locallang.xlf:site.title'
     alt: 'LLL:EXT:sitepackage/Resources/Private/Language/locallang.xlf:site.title'
