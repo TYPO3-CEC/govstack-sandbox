@@ -93,6 +93,7 @@ spec:
               cd /tmp/repo || (mkdir -p /tmp/repo && cd /tmp/repo)
               composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader --no-progress --ignore-platform-req=ext-intl
               rsync -a /tmp/repo/ /var/www/html/ --exclude=public/fileadmin --exclude=public/typo3temp --exclude=var
+              chown 1000:1000 /var/www/html/public
               cp /tmp/app-dotenv/.env /var/www/html/.env || true
           volumeMounts:
             - name: app
