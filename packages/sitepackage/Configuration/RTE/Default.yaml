@@ -3,6 +3,10 @@ imports:
     - { resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Base.yaml" }
     - { resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Plugins.yaml" }
 
+processing:
+    # Full list required: imported YAML lists are merged by index, not appended
+    allowAttributes: [class, id, title, dir, lang, xml:lang, itemscope, itemtype, itemprop, style, start]
+
 editor:
     externalPlugins:
         bootstrappackage_box:
@@ -74,9 +78,9 @@ editor:
 
         format_tags: "p;h1;h2;h3;h4;h5;pre"
 
-        allowedContent: true
-
-        extraAllowedContent: "*(*);*{*}"
+        htmlSupport:
+            allow:
+                - { name: 'p', styles: true }
 
         justifyClasses:
             - text-left
@@ -94,5 +98,12 @@ editor:
 
         removePlugins:
             - image
+        list:
+            properties:
+                startIndex: true
+                styles: false
+                reversed: false
+
         importModules:
             - { module: '@ckeditor/ckeditor5-show-blocks', exports: ['ShowBlocks'] }
+            - { module: '@ckeditor/ckeditor5-list', exports: ['ListProperties'] }
