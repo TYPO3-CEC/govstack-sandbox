@@ -13,35 +13,37 @@ DDEV provides a Docker-based local development environment that is easy to set u
 - Git (for version control)
 
 ### Setup
-1. Clone the repository
+#. Clone the repository
+   ```bash
+   git clone https://github.com/TYPO3-CEC/govstack-sandbox.git
+   ```
 
-2. Start the DDEV environment:
+#. Change to the new folder created by the git clone:
+   ```bash
+   cd govstack-sandbox
+   ```
+
+#. Start the DDEV environment:
    ```bash
    ddev start
    ```
 
-3. Import the database:
+#. Import the database:
    ```bash
    ddev import-db --file=dump/database.sql.gz
    ```
 
-4. Unzip fileadmin
+#. Import the project files into `public/fileadmin`:
    ```bash
-   cp dump/fileadmin.tar.gz public/
-   ```
-   ```bash
-   ddev exec tar xzf public/fileadmin.tar.gz -C public
-   ```
-   ```bash
-   rm public/fileadmin.tar.gz
+   ddev exec tar -xzf dump/fileadmin.tar.gz -C public
    ```
    
-5. Access your TYPO3 instance:  
+6. Access your TYPO3 instance:  
    Main portal: https://govstack-typo3.ddev.site/
    Website example for an institution: https://institution.ddev.site/
    
    
-6. Access TYPO3 backend:  
+7. Access TYPO3 backend:  
   https://govstack-typo3.ddev.site/typo3/ 
   <br/>username: admin
   <br/>password: TYPO3-BB_Govstack
